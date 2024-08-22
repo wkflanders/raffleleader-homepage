@@ -9,7 +9,8 @@ import {
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
-import Stats from './components/Stats'
+import Stats from './components/Stats';
+import LandingPrices from './components/LandingPrices';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
@@ -20,7 +21,7 @@ export default function LandingPage() {
     <div className='bg-white dark:text-white dark:bg-boxdark-2'>
       <Header navigation={navigation} />
 
-      <main className='isolate dark:bg-boxdark-2'>
+      <main className='isolate dark:bg-boxdark-2 overflow-x-hidden'>
         <Hero />
         <Features features={features} onHowItWorksComplete={() => setHowItWorksCompleted(true)} />
         {howItWorksCompleted && (
@@ -29,6 +30,9 @@ export default function LandingPage() {
             <div className='-mx-6 sm:-mx-6 lg:-mx-8'>
               <Stats stats={stats} />
             </div>
+
+            {/* Landing page price secion */}
+            <LandingPrices />
 
             {/* FAQ */}
             <FAQ faqs={faqs}/>
@@ -47,11 +51,10 @@ export default function LandingPage() {
                 </a>
               </div>
             </div>
+            <Footer footerNavigation={footerNavigation} />
           </>
         )}
       </main>
-
-      <Footer footerNavigation={footerNavigation} />
     </div>
   );
 }
