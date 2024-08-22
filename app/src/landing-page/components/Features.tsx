@@ -15,8 +15,10 @@ interface FeaturesProps {
 }
 
 const Features: React.FC<FeaturesProps> = ({ features, onHowItWorksComplete }) => {
-  const [activeBg, setActiveBg] = useState(features[0].backgroundColor);
   const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const howItWorksRef = useRef<HTMLDivElement | null>(null);
+
+  const [activeBg, setActiveBg] = useState(() => features[0].backgroundColor);
 
   const hexToRgb = (hex: string) => {
     const bigint = parseInt(hex.slice(1), 16);
@@ -33,57 +35,45 @@ const Features: React.FC<FeaturesProps> = ({ features, onHowItWorksComplete }) =
   const interpolateColor = (color1: string, color2: string, factor: number) => {
     const [r1, g1, b1] = hexToRgb(color1);
     const [r2, g2, b2] = hexToRgb(color2);
-
     const r = Math.round(r1 + (r2 - r1) * factor);
     const g = Math.round(g1 + (g2 - g1) * factor);
     const b = Math.round(b1 + (b2 - b1) * factor);
-
     return rgbToHex(r, g, b);
   };
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY + window.innerHeight / 2;
+    let isFeatureFound = false;
 
-    for (let i = 0; i < featureRefs.current.length; i++) {
-      const featureRef = featureRefs.current[i];
-      if (featureRef) {
+    featureRefs.current.forEach((featureRef, i) => {
+      if (featureRef && !isFeatureFound) {
         const rect = featureRef.getBoundingClientRect();
         const featureTop = rect.top + window.scrollY;
         const featureBottom = rect.bottom + window.scrollY;
-        const featureCenter = featureTop + (featureBottom - featureTop) / 2;
 
         if (scrollPosition >= featureTop && scrollPosition <= featureBottom) {
           const nextFeatureIndex = Math.min(i + 1, featureRefs.current.length - 1);
           const nextFeatureRef = featureRefs.current[nextFeatureIndex];
-
-          if (nextFeatureRef) {
-            const nextRect = nextFeatureRef.getBoundingClientRect();
-            const nextFeatureTop = nextRect.top + window.scrollY;
-            const nextFeatureBottom = nextRect.bottom + window.scrollY;
-            const nextFeatureCenter = nextFeatureTop + (nextFeatureBottom - nextFeatureTop) / 2;
-
-            let progress = (scrollPosition - featureTop) / (featureBottom - featureTop);
-
-            if (scrollPosition > featureCenter) {
-              progress = (scrollPosition - featureCenter) / (nextFeatureCenter - featureCenter);
-            }
-
-            const interpolatedColor = interpolateColor(features[i].backgroundColor, features[nextFeatureIndex].backgroundColor, Math.max(0, Math.min(1, progress)));
-            setActiveBg(interpolatedColor);
-          } else {
-            setActiveBg(features[i].backgroundColor);
-          }
-          break;
+          const nextFeatureColor = nextFeatureRef ? features[nextFeatureIndex].backgroundColor : features[i].backgroundColor;
+          const progress = (scrollPosition - featureTop) / (featureBottom - featureTop);
+          setActiveBg(interpolateColor(features[i].backgroundColor, nextFeatureColor, Math.max(0, Math.min(1, progress))));
+          isFeatureFound = true;
         }
+      }
+    });
+
+    if (!isFeatureFound && howItWorksRef.current) {
+      const rect = howItWorksRef.current.getBoundingClientRect();
+      const componentTop = rect.top + window.scrollY;
+      if (scrollPosition >= componentTop) {
+        setActiveBg(features[features.length - 1].backgroundColor);
       }
     }
   };
 
   useEffect(() => {
-    featureRefs.current = featureRefs.current.slice(0, features.length);
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -94,7 +84,6 @@ const Features: React.FC<FeaturesProps> = ({ features, onHowItWorksComplete }) =
       {features.map((feature, index) => (
         <div
           ref={(el) => (featureRefs.current[index] = el)}
-          data-feature={feature.name}
           key={feature.name}
           className={`snap-start md:h-screen mt-40 flex flex-col md:flex-row ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''} items-center justify-between gap-y-4 gap-x-4 sm:gap-x-6 md:gap-x-8`}
         >
@@ -113,7 +102,7 @@ const Features: React.FC<FeaturesProps> = ({ features, onHowItWorksComplete }) =
           </div>
         </div>
       ))}
-      <div style={{  marginTop: '100px', marginBottom: '50px' }}>
+      <div ref={howItWorksRef} style={{ marginTop: '100px', marginBottom: '50px' }}>
         <HowItWorksComponent onCompletion={onHowItWorksComplete} />
       </div>
     </div>
