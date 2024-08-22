@@ -11,52 +11,45 @@ const HowItWorksComponent: React.FC<HowItWorksProps> = ({ onCompletion }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Load completion state from local storage and check if component should be marked as completed on load
-    const isCompleted = localStorage.getItem('howItWorksCompleted') === 'true';
-    if (isCompleted) {
-      setFillProgress([100, 100, 100]);
-      onCompletion();
-    } else {
-      const handleScroll = (event: WheelEvent) => {
-        if (event.deltaY > 0) {
-          if (currentIndex < fillProgress.length && fillProgress[currentIndex] < 100) {
-            event.preventDefault();
-            const updatedProgress = [...fillProgress];
-            updatedProgress[currentIndex] = 100;
-            setFillProgress(updatedProgress);
-            setTimeout(() => {
-              if (updatedProgress.every(progress => progress === 100)) {
-                onCompletion();
-                localStorage.setItem('howItWorksCompleted', 'true');
-              } else {
-                setCurrentIndex(prevIndex => prevIndex + 1);
-              }
-            }, 500);
-          }
+    const handleScroll = (event: WheelEvent) => {
+      let st = window.pageYOffset || document.documentElement.scrollTop;
+      if (event.deltaY > 0) {
+        if (currentIndex < fillProgress.length && fillProgress[currentIndex] < 100) {
+          event.preventDefault(); // Prevent scrolling only when filling
+          const updatedProgress = [...fillProgress];
+          updatedProgress[currentIndex] = 100;
+          setFillProgress(updatedProgress);
+          setTimeout(() => {
+            if (updatedProgress.every(progress => progress >= 100)) {
+              onCompletion();
+            } else {
+              setCurrentIndex(prevIndex => prevIndex + 1);
+            }
+          }, 500);
         }
-      };
-
-      const observer = new IntersectionObserver(
-        entries => {
-          const entry = entries[0];
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.75 && fillProgress.some(progress => progress < 100)) {
-            window.addEventListener('wheel', handleScroll, { passive: false });
-          } else {
-            window.removeEventListener('wheel', handleScroll);
-          }
-        },
-        { threshold: [0.75] }
-      );
-
-      if (componentRef.current) {
-        observer.observe(componentRef.current);
       }
+    };
 
-      return () => {
-        observer.disconnect();
-        window.removeEventListener('wheel', handleScroll);
-      };
+    const observer = new IntersectionObserver(
+      entries => {
+        const entry = entries[0];
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.75 && fillProgress.some(progress => progress < 100)) {
+          window.addEventListener('wheel', handleScroll, { passive: false });
+        } else {
+          window.removeEventListener('wheel', handleScroll);
+        }
+      },
+      { threshold: [0.75] }
+    );
+
+    if (componentRef.current) {
+      observer.observe(componentRef.current);
     }
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('wheel', handleScroll);
+    };
   }, [fillProgress, currentIndex, onCompletion]);
 
   useEffect(() => {
