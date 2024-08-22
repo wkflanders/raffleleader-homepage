@@ -3,9 +3,8 @@ import { requireNodeEnvVar } from '../server/utils';
 export type SubscriptionStatus = 'past_due' | 'cancel_at_period_end' | 'active' | 'deleted';
 
 export enum PaymentPlanId {
-  Hobby = 'hobby',
-  Pro = 'pro',
-  Credits10 = 'credits10',
+  Yearly = 'yearly',
+  Lifetime = 'lifetime',
 }
 
 export interface PaymentPlan {
@@ -13,28 +12,23 @@ export interface PaymentPlan {
   effect: PaymentPlanEffect;
 }
 
-export type PaymentPlanEffect = { kind: 'subscription' } | { kind: 'credits'; amount: number };
+export type PaymentPlanEffect = { kind: 'subscription' };
 
 export const paymentPlans: Record<PaymentPlanId, PaymentPlan> = {
-  [PaymentPlanId.Hobby]: {
-    getStripePriceId: () => requireNodeEnvVar('STRIPE_HOBBY_SUBSCRIPTION_PRICE_ID'),
+  [PaymentPlanId.Yearly]: {
+    getStripePriceId: () => requireNodeEnvVar('STRIPE_YEARLY_SUBSCRIPTION_PRICE_ID'),
     effect: { kind: 'subscription' },
   },
-  [PaymentPlanId.Pro]: {
-    getStripePriceId: () => requireNodeEnvVar('STRIPE_PRO_SUBSCRIPTION_PRICE_ID'),
+  [PaymentPlanId.Lifetime]: {
+    getStripePriceId: () => requireNodeEnvVar('STRIPE_LIFETIME_SUBSCRIPTION_PRICE_ID'),
     effect: { kind: 'subscription' },
-  },
-  [PaymentPlanId.Credits10]: {
-    getStripePriceId: () => requireNodeEnvVar('STRIPE_CREDITS_PRICE_ID'),
-    effect: { kind: 'credits', amount: 10 },
   },
 };
 
 export function prettyPaymentPlanName(planId: PaymentPlanId): string {
   const planToName: Record<PaymentPlanId, string> = {
-    [PaymentPlanId.Hobby]: 'Hobby',
-    [PaymentPlanId.Pro]: 'Pro',
-    [PaymentPlanId.Credits10]: '10 Credits',
+    [PaymentPlanId.Yearly]: 'YEARLY',
+    [PaymentPlanId.Lifetime]: 'LIFETIME',
   };
   return planToName[planId];
 }

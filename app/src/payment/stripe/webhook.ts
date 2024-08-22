@@ -99,11 +99,6 @@ export async function handleCheckoutSessionCompleted(
     case 'subscription':
       subscriptionPlan = planId;
       break;
-    case 'credits':
-      numOfCreditsPurchased = plan.effect.amount;
-      break;
-    default:
-      assertUnreachable(plan.effect);
   }
 
   return updateUserStripePaymentDetails(
