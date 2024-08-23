@@ -14,15 +14,12 @@ const LazyVideo: React.FC<LazyVideoProps> = ({ videoSrc, className }) => {
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setLoadVideo(true); // Load the video when it's about to come into view
-          } else {
-            setLoadVideo(false); // Unload the video when it goes out of view
+            setLoadVideo(true);
           }
         });
       },
       {
-        threshold: 0, // Trigger when 10% of the video is visible
-        rootMargin: '500px 0px 500px 0px' // Check for intersection 500px before and after the video element
+        rootMargin: '0px 0px', // Trigger as soon as the video is in the viewport
       }
     );
 
@@ -41,10 +38,8 @@ const LazyVideo: React.FC<LazyVideoProps> = ({ videoSrc, className }) => {
 
   useEffect(() => {
     if (loadVideo && videoRef.current) {
-      videoRef.current.src = videoSrc; // Load the video by setting the src
-    } else if (videoRef.current) {
-      videoRef.current.src = ""; // Clear the source when not needed
-      videoRef.current.load(); // Force reload to clear buffered data
+      videoRef.current.src = videoSrc;
+      videoRef.current.load(); // Start loading the video immediately
     }
   }, [loadVideo, videoSrc]);
 
@@ -56,6 +51,7 @@ const LazyVideo: React.FC<LazyVideoProps> = ({ videoSrc, className }) => {
       loop
       muted
       playsInline
+      preload="metadata" // Preload only the metadata initially
     />
   );
 };
