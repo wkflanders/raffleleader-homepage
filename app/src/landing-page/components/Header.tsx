@@ -5,9 +5,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { Dialog } from '@headlessui/react';
 import { Link } from 'wasp/client/router';
 import { useAuth } from 'wasp/client/auth';
-import { useHistory } from 'react-router-dom';
 import logo from '../../client/static/TEXT-LOGO.svg';
-import DarkModeSwitcher from '../../client/components/DarkModeSwitcher';
 import DropdownUser from '../../user/DropdownUser';
 import { UserMenuItems } from '../../user/UserMenuItems';
 
@@ -22,13 +20,6 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
   const { data: user, isLoading: isUserLoading } = useAuth();
 
   const NavLogo = () => <img className='h-15 w-30' src={logo} alt='Raffle Leader' />;
-
-  const history = useHistory();
-
-  async function handlePricingClick(){
-    history.push('/pricing');
-    return;
-  }
 
   return (
     <header className='shadow-lg absolute inset-x-0 top-0 z-50 dark:bg-boxdark-2'>
