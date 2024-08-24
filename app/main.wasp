@@ -1,9 +1,9 @@
-app OpenSaaS {
+app RaffleLeader {
   wasp: {
     version: "^0.14.0"
   },
 
-  title: "My Open SaaS App",
+  title: "Raffle Leader",
 
   head: [
         "<meta property='og:type' content='website' />",
