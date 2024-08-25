@@ -91,6 +91,11 @@ page LandingPage {
   component: import LandingPage from "@src/landing-page/LandingPage"
 }
 
+route AboutPageRoute { path: "/about", to: AboutPage }
+page AboutPage {
+  component: import AboutPage from "@src/about/AboutPage"
+}
+
 //#region Auth Pages
 route LoginRoute { path: "/login", to: LoginPage }
 page LoginPage {
