@@ -1,6 +1,13 @@
 import { type MiddlewareConfigFn, HttpError } from 'wasp/server';
 import { type StripeWebhook } from 'wasp/server/api';
-import { type PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import {
+  findAuthIdentity,
+  createProviderId,
+  sanitizeAndSerializeProviderData,
+  createUser,
+} from 'wasp/server/auth'
+import crypto from 'crypto';
 import express from 'express';
 import { Stripe } from 'stripe';
 import { stripe } from './stripeClient';
@@ -73,6 +80,24 @@ export async function handleCheckoutSessionCompleted(
   prismaUserDelegate: PrismaClient["user"]
 ) {
   const userStripeId = validateUserStripeIdOrThrow(session.customer);
+  
+  const customerEmail = session.customer_details?.email;
+  if (!customerEmail){
+    throw new HttpError(400, 'No customer email found in session');
+  }
+
+  let user = await prismaUserDelegate.findUnique({
+    where: { email: customerEmail },
+  });
+
+  if (!user){
+    user = await handleGuessStripeSignup({
+      email: customerEmail,
+      stripeCustomerId: userStripeId,
+      prismaUserDelegate
+    });
+  }
+
   const { line_items } = await stripe.checkout.sessions.retrieve(session.id, {
     expand: ['line_items'],
   });
@@ -155,4 +180,76 @@ function validateUserStripeIdOrThrow(userStripeId: Stripe.Checkout.Session['cust
   if (!userStripeId) throw new HttpError(400, 'No customer id');
   if (typeof userStripeId !== 'string') throw new HttpError(400, 'Customer id is not a string');
   return userStripeId;
+}
+
+export async function handleGuessStripeSignup({
+  email,
+  stripeCustomerId,
+}: {
+  email: string;
+  stripeCustomerId: string;
+  prismaUserDelegate: PrismaClient['user'];
+}) {
+  const prisma = new PrismaClient();
+  try{
+
+    const providerId = createProviderId('email', email);
+    const existingAuthIdentity = await findAuthIdentity(providerId);
+
+    if (existingAuthIdentity){
+      throw new HttpError(500, `User with email ${email} already exists.`);
+    }
+
+    const password = crypto.randomBytes(8).toString('hex');
+
+    const user = await prisma.$transaction(async (prisma) => {
+      const newUserData = await sanitizeAndSerializeProviderData<'email'>({
+        hashedPassword: password,
+        isEmailVerified: true,
+        emailVerificationSentAt: null,
+        passwordResetSentAt: null,
+      });
+
+      const user = await createUser(
+        providerId,
+        newUserData,
+        {},
+      );
+
+      return await prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          stripeId: stripeCustomerId,
+          email: email,
+        }
+      })
+    });
+
+    
+
+    try{
+      await emailSender.send({
+          from: {
+            name: "Raffle Leader",
+            email: "noreply.raffleleader@gmail.com",
+          },
+          to: email,
+          subject: "Welcome to Raffle Leader!",
+          text: `Welcome! Your password is: ${password}`,
+          html: `
+              <p>Welcome to Raffle Leader!</p>
+              <p>Your password is: ${password}</p>
+          `,
+        }
+      );
+    } catch (error: any){
+      throw new HttpError(500, 'Failed to send Stripe signup email');
+    }
+    return user;
+
+  } catch (error: any) {
+    throw new HttpError(500, 'Error creating user with Stripe details:', error);
+  }
 }
