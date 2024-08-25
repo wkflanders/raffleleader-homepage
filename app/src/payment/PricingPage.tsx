@@ -39,10 +39,6 @@ const PricingPage = () => {
   const history = useHistory();
 
   async function handleBuyNowClick(paymentPlanId: PaymentPlanId) {
-    if (!user) {
-      history.push('/login');
-      return;
-    }
     try {
       setIsStripePaymentLoading(paymentPlanId);
       let stripeResults = await generateStripeCheckoutSession(paymentPlanId);
