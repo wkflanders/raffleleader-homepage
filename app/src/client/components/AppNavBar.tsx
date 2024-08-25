@@ -9,7 +9,6 @@ import logo from '../static/TEXT-LOGO.svg';
 import DropdownUser from '../../user/DropdownUser';
 import { UserMenuItems } from '../../user/UserMenuItems';
 import { DocsUrl, BlogUrl } from '../../shared/common';
-import DarkModeSwitcher from './DarkModeSwitcher';
 
 const navigation = [
   { name: 'Pricing', href: routes.PricingPageRoute.build() },
@@ -96,7 +95,7 @@ export default function AppNavBar() {
                     key={item.name}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className='text-sm font-medium leading-6 text-gray-900 duration-300 ease-in-out hover:text-raffleleader dark:text-white'
+                    className='-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-gray-900 hover:text-raffleleader dark:text-white dark:hover:bg-boxdark-2'
                     >
                     {item.name}
                   </a>
@@ -112,9 +111,6 @@ export default function AppNavBar() {
                 ) : (
                   <UserMenuItems user={user} setMobileMenuOpen={setMobileMenuOpen} />
                 )}
-              </div>
-              <div className='py-6'>
-                <DarkModeSwitcher />
               </div>
             </div>
           </div>
