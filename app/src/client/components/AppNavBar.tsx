@@ -14,6 +14,7 @@ const navigation = [
   { name: 'Pricing', href: routes.PricingPageRoute.build() },
   { name: 'Documentation', href: DocsUrl },
   { name: 'Blog', href: BlogUrl },
+  { name: 'About', href: routes.AboutPageRoute.build() },
 ];
 
 const NavLogo = () => <img className='h-15 w-30' src={logo} alt='Raffle Leader' />;
