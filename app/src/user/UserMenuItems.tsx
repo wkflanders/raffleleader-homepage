@@ -1,7 +1,6 @@
 import { Link } from 'wasp/client/router';
 import { type User } from 'wasp/entities';
 import { logout } from 'wasp/client/auth';
-import { MdOutlineSpaceDashboard } from 'react-icons/md';
 import { TfiDashboard } from 'react-icons/tfi';
 import { cn } from '../client/cn';
 
@@ -20,22 +19,11 @@ export const UserMenuItems = ({ user, setMobileMenuOpen }: { user?: Partial<User
           'px-6': path === '/admin',
         })}
       >
-        {path === '/' || path === '/admin' ? (
-          <li>
-            <Link
-              to='/demo-app'
-              className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-yellow-500'
-            >
-              <MdOutlineSpaceDashboard size='1.1rem' />
-              AI Scheduler (Demo App)
-            </Link>
-          </li>
-        ) : null}
         <li>
           <Link
             to='/account'
             onClick={handleMobileMenuClick}
-            className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-yellow-500'
+            className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-raffleleader'
           >
             <svg
               className='fill-current'
@@ -65,11 +53,11 @@ export const UserMenuItems = ({ user, setMobileMenuOpen }: { user?: Partial<User
             'px-6': path === '/admin',
           })}
         >
-          <li className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-yellow-500'>
+          <li className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-raffleleader'>
             <Link
               to='/admin'
               onClick={handleMobileMenuClick}
-              className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-yellow-500'
+              className='flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-raffleleader'
             >
               <TfiDashboard size='1.1rem' />
               Admin Dashboard
@@ -80,7 +68,7 @@ export const UserMenuItems = ({ user, setMobileMenuOpen }: { user?: Partial<User
       <button
         onClick={() => logout()}
         className={cn(
-          'flex items-center gap-3.5 py-4 text-sm font-medium duration-300 ease-in-out hover:text-yellow-500',
+          'flex items-center gap-3.5 py-4 text-sm font-medium duration-300 ease-in-out hover:text-raffleleader',
           {
             'sm:px-6': path !== '/admin',
             'px-6': path === '/admin',
