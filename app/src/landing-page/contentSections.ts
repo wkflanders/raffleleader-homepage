@@ -6,6 +6,7 @@ export const navigation = [
   { name: 'Pricing', href: '/pricing' },
   { name: 'Documentation', href: DocsUrl },
   { name: 'Blog', href: BlogUrl },
+  { name: 'About', href: '/about' }
 ];
 export const features = [
   {
