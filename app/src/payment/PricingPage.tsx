@@ -136,7 +136,7 @@ const PricingPage = () => {
                   onClick={handleCustomerPortalClick}
                   aria-describedby='manage-subscription'
                   className={cn(
-                    'mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400',
+                    'mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:raffleleader',
                     {
                       'bg-raffleleader text-white hover:text-white shadow-sm hover:bg-raffleleader':
                         planId === bestDealPaymentPlanId,
