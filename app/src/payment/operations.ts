@@ -2,6 +2,7 @@ import { type GenerateStripeCheckoutSession } from 'wasp/server/operations';
 import { HttpError } from 'wasp/server';
 import { PaymentPlanId, paymentPlans, type PaymentPlanEffect } from '../payment/plans';
 import { fetchStripeCustomer, createStripeCheckoutSession, type StripeMode } from './stripe/checkoutUtils';
+import Stripe from 'stripe';
 
 export type StripeCheckoutSession = {
   sessionUrl: string | null;
@@ -12,34 +13,48 @@ export const generateStripeCheckoutSession: GenerateStripeCheckoutSession<
   PaymentPlanId,
   StripeCheckoutSession
 > = async (paymentPlanId, context) => {
-  if (!context.user) {
-    throw new HttpError(401);
-  }
-  const userEmail = context.user.email;
-  if (!userEmail) {
-    throw new HttpError(
-      403,
-      'User needs an email to make a payment. If using the usernameAndPassword Auth method, switch to an Auth method that provides an email.'
-    );
-  }
-
   const paymentPlan = paymentPlans[paymentPlanId];
-  const customer = await fetchStripeCustomer(userEmail);
-  const session = await createStripeCheckoutSession({
-    priceId: paymentPlan.getStripePriceId(),
-    customerId: customer.id,
-    mode: paymentPlanEffectToStripeMode(paymentPlan.effect),
-  });
 
-  await context.entities.User.update({
-    where: {
-      id: context.user.id,
-    },
-    data: {
-      checkoutSessionId: session.id,
-      stripeId: customer.id,
-    },
-  });
+  let stripeCustomerId: string | undefined;
+  if(context.user) {
+    const user = await context.entities.User.findUnique({
+      where: {
+        id: context.user.id,
+      },
+    });
+    if(user){
+      if(user.stripeId){
+        stripeCustomerId = user.stripeId;
+      } else {
+        const stripeCustomer = await fetchStripeCustomer(user.email);
+        stripeCustomerId = stripeCustomer.id;
+
+        await context.entities.User.update({
+          where: {
+            id: context.user.id,
+          },
+          data: {
+            stripeId: stripeCustomerId,
+          }
+        });
+        }
+      } else {
+        throw new HttpError(500, 'User not found');
+      }
+    }
+  let session: Stripe.Checkout.Session;
+  try{
+    session = await createStripeCheckoutSession({
+      priceId: paymentPlan.getStripePriceId(),
+      mode: paymentPlanEffectToStripeMode(paymentPlan.effect),
+      customerId: stripeCustomerId || undefined,
+    });
+  } catch (error: any){
+    const statusCode = error.statusCode || 500;
+    const errorMessage = error.message || 'Internal server error';
+    console.log(errorMessage);
+    throw new HttpError(statusCode, errorMessage)
+  }
 
   return {
     sessionUrl: session.url,
