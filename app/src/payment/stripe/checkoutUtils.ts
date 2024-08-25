@@ -1,10 +1,15 @@
 import Stripe from 'stripe';
 import { stripe } from './stripeClient';
+import { HttpError } from 'wasp/server'
 
 // WASP_WEB_CLIENT_URL will be set up by Wasp when deploying to production: https://wasp-lang.dev/docs/deploying
 const DOMAIN = process.env.WASP_WEB_CLIENT_URL || 'http://localhost:3000';
 
-export async function fetchStripeCustomer(customerEmail: string) {
+export async function fetchStripeCustomer(customerEmail: string | undefined | null) {
+  if(!customerEmail){
+    throw new HttpError(500, 'Email is required to fetch or create a Stripe customer');
+  }
+  
   let customer: Stripe.Customer;
   try {
     const stripeCustomers = await stripe.customers.list({
@@ -21,8 +26,8 @@ export async function fetchStripeCustomer(customerEmail: string) {
     }
     return customer;
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.log(error);
+    throw new HttpError(500, 'Error fetching or creating Stripe customer');
   }
 }
 
@@ -30,12 +35,12 @@ export type StripeMode = 'subscription' | 'payment';
 
 export async function createStripeCheckoutSession({
   priceId,
-  customerId,
   mode,
+  customerId,
 }: {
   priceId: string;
-  customerId: string;
   mode: StripeMode;
+  customerId?: string;
 }) {
   try {
     return await stripe.checkout.sessions.create({
@@ -49,13 +54,10 @@ export async function createStripeCheckoutSession({
       success_url: `${DOMAIN}/checkout?success=true`,
       cancel_url: `${DOMAIN}/checkout?canceled=true`,
       automatic_tax: { enabled: true },
-      customer_update: {
-        address: 'auto',
-      },
       customer: customerId,
     });
   } catch (error) {
-    console.error(error);
+    console.log(error);
     throw error;
   }
 }
