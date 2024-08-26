@@ -18,7 +18,7 @@ export default function LandingPage() {
   const [howItWorksCompleted, setHowItWorksCompleted] = useState(false);
 
   return (
-    <div className='bg-white dark:text-white dark:bg-boxdark-2'>
+    <div className='bg-white dark:text-white dark:bg-boxdark-2 no-scrollbar overflow-y-auto'>
       <Header navigation={navigation} />
 
       <main className='isolate dark:bg-boxdark-2 overflow-x-hidden'>
