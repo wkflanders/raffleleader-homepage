@@ -1,5 +1,4 @@
 import { DocsUrl, BlogUrl } from '../shared/common';
-import daBoiAvatar from '../client/static/da-boi.png';
 import avatarPlaceholder from '../client/static/avatar-placeholder.png';
 import { routes } from 'wasp/client/router';
 
@@ -7,6 +6,7 @@ export const navigation = [
   { name: 'Pricing', href: '/pricing' },
   { name: 'Documentation', href: DocsUrl },
   { name: 'Blog', href: BlogUrl },
+  { name: 'About', href: '/about' }
 ];
 export const features = [
   {
@@ -28,29 +28,30 @@ export const features = [
     backgroundColor: '#9452ff',
   },
 ];
-export const testimonials = [
-  {
-    name: 'Da Boi',
-    role: 'Wasp Mascot',
-    avatarSrc: daBoiAvatar,
-    socialUrl: 'https://twitter.com/wasplang',
-    quote: "I don't even know how to code. I'm just a plushie.",
-  },
-  {
-    name: 'Mr. Foobar',
-    role: 'Founder @ Cool Startup',
-    avatarSrc: avatarPlaceholder,
-    socialUrl: '',
-    quote: 'This product makes me cooler than I already am.',
-  },
-  {
-    name: 'Jamie',
-    role: 'Happy Customer',
-    avatarSrc: avatarPlaceholder,
-    socialUrl: '#',
-    quote: 'My cats love it!',
-  },
-];
+
+// export const testimonials = [
+//   {
+//     name: 'Da Boi',
+//     role: 'Wasp Mascot',
+//     avatarSrc: daBoiAvatar,
+//     socialUrl: 'https://twitter.com/wasplang',
+//     quote: "I don't even know how to code. I'm just a plushie.",
+//   },
+//   {
+//     name: 'Mr. Foobar',
+//     role: 'Founder @ Cool Startup',
+//     avatarSrc: avatarPlaceholder,
+//     socialUrl: '',
+//     quote: 'This product makes me cooler than I already am.',
+//   },
+//   {
+//     name: 'Jamie',
+//     role: 'Happy Customer',
+//     avatarSrc: avatarPlaceholder,
+//     socialUrl: '#',
+//     quote: 'My cats love it!',
+//   },
+// ];
 
 export const stats = [
   {

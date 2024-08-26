@@ -5,9 +5,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { Dialog } from '@headlessui/react';
 import { Link } from 'wasp/client/router';
 import { useAuth } from 'wasp/client/auth';
-import { useHistory } from 'react-router-dom';
 import logo from '../../client/static/TEXT-LOGO.svg';
-import DarkModeSwitcher from '../../client/components/DarkModeSwitcher';
 import DropdownUser from '../../user/DropdownUser';
 import { UserMenuItems } from '../../user/UserMenuItems';
 
@@ -22,13 +20,6 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
   const { data: user, isLoading: isUserLoading } = useAuth();
 
   const NavLogo = () => <img className='h-15 w-30' src={logo} alt='Raffle Leader' />;
-
-  const history = useHistory();
-
-  async function handlePricingClick(){
-    history.push('/pricing');
-    return;
-  }
 
   return (
     <header className='shadow-lg absolute inset-x-0 top-0 z-50 dark:bg-boxdark-2'>
@@ -103,7 +94,7 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:text-white dark:hover:bg-boxdark-2'
+                      className='-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-gray-900 hover:text-raffleleader dark:text-white dark:hover:bg-boxdark-2'
                     >
                       {item.name}
                     </a>

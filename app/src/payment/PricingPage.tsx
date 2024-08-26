@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { cn } from '../client/cn';
 import { z } from 'zod';
 
-const bestDealPaymentPlanId: PaymentPlanId = PaymentPlanId.Yearly;
+const bestDealPaymentPlanId: PaymentPlanId = PaymentPlanId.Lifetime;
 
 interface PaymentPlanCard {
   name: string;
@@ -39,10 +39,6 @@ const PricingPage = () => {
   const history = useHistory();
 
   async function handleBuyNowClick(paymentPlanId: PaymentPlanId) {
-    if (!user) {
-      history.push('/login');
-      return;
-    }
     try {
       setIsStripePaymentLoading(paymentPlanId);
       let stripeResults = await generateStripeCheckoutSession(paymentPlanId);
@@ -72,7 +68,7 @@ const PricingPage = () => {
   };
 
   return (
-    <div className='py-10 lg:mt-10'>
+    <div>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div id='pricing' className='mx-auto max-w-4xl text-center'>
           <h2 className='mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white'>
@@ -84,7 +80,7 @@ const PricingPage = () => {
           test credit card number{' '}
           <span className='px-2 py-1 bg-gray-100 rounded-md text-gray-500'>4242 4242 4242 4242 4242</span>
         </p>
-        <div className='isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 lg:gap-x-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2'>
+        <div className='isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 lg:gap-x-8 sm:mt-10 lg:mx-0 lg:max-w-none lg:grid-cols-2'>
           {Object.values(PaymentPlanId).map((planId) => (
             <div
               key={planId}
@@ -113,7 +109,10 @@ const PricingPage = () => {
                   </h3>
                 </div>
                 <p className='font-bold mt-4 text-3xl text-gray-600 dark:text-white'>
-                  {paymentPlanCards[planId].description}
+                    <s>{paymentPlanCards[planId].description}</s>
+                    <span className='text-sm font-semibold leading-6 text-gray-600 dark:text-white'>
+                        {paymentPlanCards[planId].name != 'LIFETIME' && '/yr'}
+                    </span>
                 </p>
                 <p className='mt-6 flex items-baseline gap-x-1 dark:text-white'>
                   <span className='text-4xl font-bold tracking-tight text-gray-900 dark:text-white'>
@@ -137,7 +136,7 @@ const PricingPage = () => {
                   onClick={handleCustomerPortalClick}
                   aria-describedby='manage-subscription'
                   className={cn(
-                    'mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-400',
+                    'mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:raffleleader',
                     {
                       'bg-raffleleader text-white hover:text-white shadow-sm hover:bg-raffleleader':
                         planId === bestDealPaymentPlanId,
@@ -165,7 +164,7 @@ const PricingPage = () => {
                     'mt-8 block rounded-md py-2 px-3 text-center text-sm dark:text-white font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-raffleleader'
                   )}
                 >
-                  {!!user ? 'Buy plan' : 'Log in to buy plan'}
+                  Get Now
                 </button>
               )}
             </div>

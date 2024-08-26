@@ -1,6 +1,7 @@
 import type { SubscriptionStatus } from '../plans';
 import { PaymentPlanId } from '../plans';
 import { PrismaClient } from '@prisma/client';
+import { HttpError } from 'wasp/server';
 
 type UserStripePaymentDetails = {
   userStripeId: string;
@@ -10,10 +11,17 @@ type UserStripePaymentDetails = {
   datePaid?: Date;
 };
 
-export const updateUserStripePaymentDetails = (
+export const updateUserStripePaymentDetails = async (
   { userStripeId, subscriptionPlan, subscriptionStatus, datePaid, numOfCreditsPurchased }: UserStripePaymentDetails,
   userDelegate: PrismaClient['user']
 ) => {
+  const user = await userDelegate.findUnique({
+    where: { stripeId: userStripeId },
+  });
+
+  if (!user){
+    throw new HttpError(404, `User with stripeId ${userStripeId} not found`);
+  }
   return userDelegate.update({
     where: {
       stripeId: userStripeId,
