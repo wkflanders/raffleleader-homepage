@@ -119,7 +119,7 @@ const PricingPage = () => {
                     {paymentPlanCards[planId].price}
                   </span>
                   <span className='text-sm font-semibold leading-6 text-gray-600 dark:text-white'>
-                    {paymentPlanCards[planId].name != PaymentPlanId.Yearly && '/yr'}
+                    {paymentPlanCards[planId].name != 'LIFETIME' && '/yr'}
                   </span>
                 </p>
                 <ul role='list' className='mt-8 space-y-3 text-sm leading-6 text-gray-600 dark:text-white'>
