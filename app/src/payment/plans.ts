@@ -12,7 +12,7 @@ export interface PaymentPlan {
   effect: PaymentPlanEffect;
 }
 
-export type PaymentPlanEffect = { kind: 'subscription' };
+export type PaymentPlanEffect = { kind: 'subscription' | 'payment' };
 
 export const paymentPlans: Record<PaymentPlanId, PaymentPlan> = {
   [PaymentPlanId.Yearly]: {
@@ -21,7 +21,7 @@ export const paymentPlans: Record<PaymentPlanId, PaymentPlan> = {
   },
   [PaymentPlanId.Lifetime]: {
     getStripePriceId: () => requireNodeEnvVar('STRIPE_LIFETIME_SUBSCRIPTION_PRICE_ID'),
-    effect: { kind: 'subscription' },
+    effect: { kind: 'payment' },
   },
 };
 
@@ -42,5 +42,5 @@ export function parsePaymentPlanId(planId: string): PaymentPlanId {
 }
 
 export function getSubscriptionPaymentPlanIds(): PaymentPlanId[] {
-  return Object.values(PaymentPlanId).filter((planId) => paymentPlans[planId].effect.kind === 'subscription');
+  return Object.values(PaymentPlanId).filter((planId) => paymentPlans[planId].effect.kind === 'subscription' || paymentPlans[planId].effect.kind === 'payment');
 }
