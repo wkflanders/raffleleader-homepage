@@ -12,12 +12,14 @@ type UserStripePaymentDetails = {
 };
 
 export const updateUserStripePaymentDetails = async (
-  { userStripeId, subscriptionPlan, subscriptionStatus, datePaid, numOfCreditsPurchased }: UserStripePaymentDetails,
+  { userStripeId, subscriptionPlan, subscriptionStatus, datePaid }: UserStripePaymentDetails,
   userDelegate: PrismaClient['user']
 ) => {
   const user = await userDelegate.findUnique({
     where: { stripeId: userStripeId },
   });
+
+  console.log(subscriptionPlan);
 
   if (!user){
     throw new HttpError(404, `User with stripeId ${userStripeId} not found`);
@@ -30,7 +32,6 @@ export const updateUserStripePaymentDetails = async (
       subscriptionPlan,
       subscriptionStatus,
       datePaid,
-      credits: numOfCreditsPurchased !== undefined ? { increment: numOfCreditsPurchased } : undefined,
     },
   });
 };
