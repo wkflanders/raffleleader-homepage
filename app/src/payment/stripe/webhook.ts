@@ -22,13 +22,13 @@ export const stripeWebhook: StripeWebhook = async (request, response, context) =
   const secret = requireNodeEnvVar('STRIPE_WEBHOOK_SECRET');
   const sig = request.headers['stripe-signature'];
   if (!sig) {
-    throw new HttpError(400, 'Stripe Webhook Signature Not Provided');
+    throw new HttpError(405, 'Stripe Webhook Signature Not Provided');
   }
   let event: Stripe.Event;
   try {
     event = stripe.webhooks.constructEvent(request.body, sig, secret);
   } catch (err) {
-    throw new HttpError(400, 'Error Constructing Stripe Webhook Event');
+    throw new HttpError(403, 'Error Constructing Stripe Webhook Event');
   }
   const prismaUserDelegate = context.entities.User;
   switch (event.type) {
@@ -83,7 +83,7 @@ export async function handleCheckoutSessionCompleted(
   
   const customerEmail = session.customer_details?.email;
   if (!customerEmail){
-    throw new HttpError(400, 'No customer email found in session');
+    throw new HttpError(412, 'No customer email found in session');
   }
 
   let user = await prismaUserDelegate.findUnique({
@@ -103,10 +103,10 @@ export async function handleCheckoutSessionCompleted(
   });
   const result = LineItemsPriceSchema.safeParse(line_items);
   if (!result.success) {
-    throw new HttpError(400, 'No price id in line item');
+    throw new HttpError(406, 'No price id in line item');
   }
   if (result.data.data.length > 1) {
-    throw new HttpError(400, 'More than one line item in session');
+    throw new HttpError(410, 'More than one line item in session');
   }
   const lineItemPriceId =  result.data.data[0].price.id;
 
@@ -118,16 +118,19 @@ export async function handleCheckoutSessionCompleted(
   }
   const plan = paymentPlans[planId];
 
-  let subscriptionPlan: PaymentPlanId | undefined;
-  let numOfCreditsPurchased: number | undefined;
+  let subscriptionPlan: PaymentPlanId;
   switch (plan.effect.kind) {
     case 'subscription':
       subscriptionPlan = planId;
       break;
+    case 'payment':
+      subscriptionPlan = planId;
+      break;
   }
+  console.log(subscriptionPlan);
 
   return updateUserStripePaymentDetails(
-    { userStripeId, subscriptionPlan, numOfCreditsPurchased, datePaid: new Date() },
+    { userStripeId, subscriptionPlan, datePaid: new Date() },
     prismaUserDelegate
   );
 }
@@ -227,24 +230,21 @@ export async function handleGuessStripeSignup({
       })
     });
 
-    
-
-    try{
+    try {
       await emailSender.send({
-          from: {
-            name: "Raffle Leader",
-            email: "noreply.raffleleader@gmail.com",
-          },
-          to: email,
-          subject: "Welcome to Raffle Leader!",
-          text: `Welcome! Your password is: ${password}`,
-          html: `
-              <p>Welcome to Raffle Leader!</p>
-              <p>Your password is: ${password}</p>
-          `,
-        }
-      );
-    } catch (error: any){
+        from: {
+          name: "Raffle Leader",
+          email: "noreply.raffleleader@gmail.com",
+        },
+        to: email,
+        subject: "Welcome to Raffle Leader!",
+        text: `Welcome! Your password is: ${password}`,
+        html: `
+            <p>Welcome to Raffle Leader!</p>
+            <p>Your password is: ${password}</p>
+        `,
+      });
+    } catch (error) {
       throw new HttpError(500, 'Failed to send Stripe signup email');
     }
     return user;
