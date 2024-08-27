@@ -65,6 +65,7 @@ export const generateStripeCheckoutSession: GenerateStripeCheckoutSession<
 function paymentPlanEffectToStripeMode(planEffect: PaymentPlanEffect): StripeMode {
   const effectToMode: Record<PaymentPlanEffect['kind'], StripeMode> = {
     subscription: 'subscription',
+    payment: 'payment',
   };
   return effectToMode[planEffect.kind];
 }
