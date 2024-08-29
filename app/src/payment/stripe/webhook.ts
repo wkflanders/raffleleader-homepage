@@ -79,23 +79,16 @@ export async function handleCheckoutSessionCompleted(
   session: Stripe.Checkout.Session,
   prismaUserDelegate: PrismaClient["user"]
 ) {
-  const userStripeId = validateUserStripeIdOrThrow(session.customer);
+  let userStripeId = validateUserStripeIdOrThrow(session.customer);
   
   const customerEmail = session.customer_details?.email;
   if (!customerEmail){
     throw new HttpError(412, 'No customer email found in session');
   }
 
-  let user = await prismaUserDelegate.findUnique({
-    where: { email: customerEmail },
-  });
-
-  if (!user){
-    user = await handleGuessStripeSignup({
-      email: customerEmail,
-      stripeCustomerId: userStripeId,
-      prismaUserDelegate
-    });
+  const customerFirstName = session.customer_details?.name;
+  if (!customerFirstName){
+    throw new HttpError(412, 'No customer name found in session');
   }
 
   const { line_items } = await stripe.checkout.sessions.retrieve(session.id, {
@@ -127,7 +120,19 @@ export async function handleCheckoutSessionCompleted(
       subscriptionPlan = planId;
       break;
   }
-  console.log(subscriptionPlan);
+
+  const user = await handleGuessStripeSignup({
+    email: customerEmail,
+    customerName: customerFirstName,
+    stripeCustomerId: userStripeId,
+    prismaUserDelegate
+  });
+
+  if(!user.stripeId){
+    throw new HttpError(500, 'Missing stripe id link in fetched customer');
+  }
+
+  userStripeId = user.stripeId;
 
   return updateUserStripePaymentDetails(
     { userStripeId, subscriptionPlan, datePaid: new Date() },
@@ -159,12 +164,12 @@ export async function handleCustomerSubscriptionUpdated(
     const user = await updateUserStripePaymentDetails({ userStripeId, subscriptionStatus }, prismaUserDelegate);
     if (subscription.cancel_at_period_end) {
       if (user.email) {
-        await emailSender.send({
-          to: user.email,
-          subject: 'We hate to see you go :(',
-          text: 'We hate to see you go. Here is a sweet offer...',
-          html: 'We hate to see you go. Here is a sweet offer...',
-        });
+        // await emailSender.send({
+        //   to: user.email,
+        //   subject: 'We hate to see you go :(',
+        //   text: 'We hate to see you go. Here is a sweet offer...',
+        //   html: 'We hate to see you go. Here is a sweet offer...',
+        // });
       }
     }
     return user;
@@ -187,9 +192,11 @@ function validateUserStripeIdOrThrow(userStripeId: Stripe.Checkout.Session['cust
 
 export async function handleGuessStripeSignup({
   email,
+  customerName,
   stripeCustomerId,
 }: {
   email: string;
+  customerName: string;
   stripeCustomerId: string;
   prismaUserDelegate: PrismaClient['user'];
 }) {
@@ -199,8 +206,25 @@ export async function handleGuessStripeSignup({
     const providerId = createProviderId('email', email);
     const existingAuthIdentity = await findAuthIdentity(providerId);
 
-    if (existingAuthIdentity){
-      throw new HttpError(500, `User with email ${email} already exists.`);
+    if (existingAuthIdentity) {
+      const authProfile = await prisma.auth.findUnique({
+        where: { id: existingAuthIdentity.authId }
+      });
+  
+      if (!authProfile) {
+        throw new Error('Auth profile not found');
+      }
+  
+      // Directly access userId assuming it must exist.
+      const user = await prisma.user.findUnique({
+        where: { id: authProfile.userId as string }
+      });
+  
+      if (!user) {
+        throw new Error('User not found');
+      }
+  
+      return user;
     }
 
     const password = crypto.randomBytes(8).toString('hex');
@@ -226,6 +250,7 @@ export async function handleGuessStripeSignup({
         data: {
           stripeId: stripeCustomerId,
           email: email,
+          username: customerName,
         }
       })
     });
@@ -238,10 +263,47 @@ export async function handleGuessStripeSignup({
         },
         to: email,
         subject: "Welcome to Raffle Leader!",
-        text: `Welcome! Your password is: ${password}`,
+        text: `Welcome to Raffle Leader! Congratulations, you now have access to the best giveaway and contest plugin on WordPress!`,
         html: `
-            <p>Welcome to Raffle Leader!</p>
-            <p>Your password is: ${password}</p>
+             <!DOCTYPE html>
+            <html>
+            <head>
+            <style>
+                body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
+                .email-wrapper { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; }
+                .header { background-color: #1501FE; padding: 10px; }
+                .footer { background-color: #f3f3f3; padding: 10px; text-align: center; font-size: 12px; }
+            </style>
+            </head>
+            <body>
+            <div class="email-wrapper">
+                <div class="header">
+                    <img src="https://raffleleader.s3.us-east-2.amazonaws.com/BANNER-LOGO.png" alt="Raffle Leader Logo" title="Raffle Leader Logo" style="width: 100%;">
+                </div>
+                <br></br>
+                <p>Welcome to Raffle Leader, ${customerName}!</p>
+                <br></br>
+                <p>Congratulations, you now have access to the best giveaway and contest plugin on WordPress.</p>
+                <br></br>
+                <p>Here is your login information:
+                <br></br>
+                <br></br>
+                <p>Email: <strong>${email}</strong></p>
+                <p>Password: <strong>${password}</strong></p>
+                <br></br>
+                <p>To change your password after logging in for the first time, <a href="https://raffleleader.com/reset-password/">go here</a>.</p>
+                <br></br>
+                <p>For additional information on how to install and use the plugin, <a href="https://raffleleader.com/documentation/">visit our docuemntation page</a>.
+                <br></br>
+                <p>If you have any questions or concerns, please contact us at stephen@raffleleader.com</p>
+                <div class="footer">
+                    <p>Thank you for joining Raffle Leader!</p>
+                    <p>Follow us on <a href="https://x.com/RaffleLeader">Twitter</a> | <a href="https://www.instagram.com/raffleleader/">Instagram</a></p>
+                    <p>&copy; 2024 Raffle Leader. All rights reserved.</p>
+                </div>
+            </div>
+            </body>
+            </html>
         `,
       });
     } catch (error) {
