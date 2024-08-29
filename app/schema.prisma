@@ -11,7 +11,7 @@ model User {
   id                        String          @id @default(uuid())
   createdAt                 DateTime        @default(now())
 
-  email                     String?         @unique
+  email                     String?         // @unique will have to revisit this
   username                  String?         @unique
   lastActiveTimestamp       DateTime        @default(now())
   isAdmin                   Boolean         @default(false)
@@ -19,7 +19,7 @@ model User {
   stripeId                  String?         @unique
   checkoutSessionId         String?
   subscriptionStatus        String?         // 'active', 'canceled', 'past_due', 'deleted'
-  subscriptionPlan          String?         // 'hobby', 'pro'
+  subscriptionPlan          String?         // 'yearly', 'lifetime'
   sendNewsletter            Boolean         @default(false)
   datePaid                  DateTime?
   credits                   Int             @default(3)
