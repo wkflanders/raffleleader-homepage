@@ -19,11 +19,19 @@ export const updateUserStripePaymentDetails = async (
     where: { stripeId: userStripeId },
   });
 
-  console.log(subscriptionPlan);
-
   if (!user){
     throw new HttpError(404, `User with stripeId ${userStripeId} not found`);
   }
+
+  if(subscriptionPlan === 'lifetime'){
+    subscriptionStatus = 'active';
+  }
+
+  // Just have lifetime supercede any other plan if the user already has lifetime and for whatever reason brought another plan
+  if(user.subscriptionPlan === 'lifetime'){
+    subscriptionPlan = PaymentPlanId.Lifetime;
+  }
+
   return userDelegate.update({
     where: {
       stripeId: userStripeId,
