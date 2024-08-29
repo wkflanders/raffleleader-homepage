@@ -43,21 +43,28 @@ export async function createStripeCheckoutSession({
   customerId?: string;
 }) {
   try {
-    return await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
+    // Setup options for the checkout session
+    const sessionOptions: Stripe.Checkout.SessionCreateParams = {
+      line_items: [{
+        price: priceId,
+        quantity: 1,
+      }],
       mode: mode,
       success_url: `${DOMAIN}/checkout?success=true`,
       cancel_url: `${DOMAIN}/checkout?canceled=true`,
       automatic_tax: { enabled: true },
-      customer: customerId,
-    });
+    };
+
+    // If customerId is not provided, set customer_creation to 'always' to ensure a customer is created
+    if (!customerId && mode === 'payment') {
+      sessionOptions.customer_creation = 'always';
+    } else {
+      sessionOptions.customer = customerId;
+    }
+
+    return await stripe.checkout.sessions.create(sessionOptions);
   } catch (error) {
-    console.log(error);
+    console.error('Error creating Stripe checkout session:', error);
     throw error;
   }
 }
