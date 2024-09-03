@@ -20,15 +20,17 @@
 }
 
 .blogListHeader h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 500;
   margin-bottom: 10px;
   font-family: 'Overpass', 'sans-serif';
-  color: black;
+  color: rgb(17 24 39);
 }
 
 .blogListHeader p {
   font-size: 1.25rem;
-  color: black;
+  color: rgb(17 24 39);
 }
 
 .featuredPost {
@@ -42,7 +44,10 @@
 }
 
 .featuredPostTitle a {
-  color: #000; /* Keep the title color black */
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 500;
+  color: rgb(17 24 39); /* Keep the title color black */
   text-decoration: none; /* Remove text decoration */
   font-family: 'Overpass', 'sans-serif';
 }
@@ -112,9 +117,11 @@
 }
 
 .blogListItemTitle a {
-  color: #000; /* Keep the title color black */
+  color: rgb(17 24 39); /* Keep the title color black */
   text-decoration: none; /* Remove text decoration */
   font-family: 'Overpass', 'sans-serif';
+  line-height: 1;
+  font-weight: 500;
 }
 
 .blogListItemTitle a:hover {
