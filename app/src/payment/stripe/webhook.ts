@@ -129,7 +129,7 @@ export async function handleCheckoutSessionCompleted(
   });
 
   if(!user.stripeId){
-    throw new HttpError(500, 'Missing stripe id link in fetched customer');
+    throw new HttpError(430, 'Missing stripe id link in fetched customer');
   }
 
   userStripeId = user.stripeId;
@@ -201,8 +201,7 @@ export async function handleGuessStripeSignup({
   prismaUserDelegate: PrismaClient['user'];
 }) {
   const prisma = new PrismaClient();
-  try{
-
+  try {
     const providerId = createProviderId('email', email);
     const existingAuthIdentity = await findAuthIdentity(providerId);
 
@@ -210,24 +209,24 @@ export async function handleGuessStripeSignup({
       const authProfile = await prisma.auth.findUnique({
         where: { id: existingAuthIdentity.authId }
       });
-  
+
       if (!authProfile) {
         throw new Error('Auth profile not found');
       }
-  
-      // Directly access userId assuming it must exist.
+
       const user = await prisma.user.findUnique({
         where: { id: authProfile.userId as string }
       });
-  
+
       if (!user) {
         throw new Error('User not found');
       }
-  
+
       return user;
     }
 
     const password = crypto.randomBytes(8).toString('hex');
+    const licenseKey = crypto.randomBytes(16).toString('hex'); // Generate license key
 
     const user = await prisma.$transaction(async (prisma) => {
       const newUserData = await sanitizeAndSerializeProviderData<'email'>({
@@ -251,8 +250,9 @@ export async function handleGuessStripeSignup({
           stripeId: stripeCustomerId,
           email: email,
           username: customerName,
+          licenseKey: licenseKey // Store the license key
         }
-      })
+      });
     });
 
     try {
@@ -271,31 +271,26 @@ export async function handleGuessStripeSignup({
             <style>
                 body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; }
                 .email-wrapper { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; }
-                .header { background-color: #1501FE; padding: 10px; }
+                .header { background-color: #1501FE; padding: 10px; display: flex; justify-content: center;}
                 .footer { background-color: #f3f3f3; padding: 10px; text-align: center; font-size: 12px; }
             </style>
             </head>
             <body>
             <div class="email-wrapper">
                 <div class="header">
-                    <img src="https://raffleleader.s3.us-east-2.amazonaws.com/BANNER-LOGO.png" alt="Raffle Leader Logo" title="Raffle Leader Logo" style="width: 100%;">
+                    <img src="https://raffleleader.s3.us-east-2.amazonaws.com/logo-horizontal.png" alt="Raffle Leader Logo" title="Raffle Leader Logo" style="width: 100%;">
                 </div>
                 <br></br>
                 <p>Welcome to Raffle Leader, ${customerName}!</p>
-                <br></br>
                 <p>Congratulations, you now have access to the best giveaway and contest plugin on WordPress.</p>
-                <br></br>
                 <p>Here is your login information:
-                <br></br>
                 <br></br>
                 <p>Email: <strong>${email}</strong></p>
                 <p>Password: <strong>${password}</strong></p>
                 <br></br>
                 <p>To change your password after logging in for the first time, <a href="https://raffleleader.com/reset-password/">go here</a>.</p>
-                <br></br>
                 <p>For additional information on how to install and use the plugin, <a href="https://raffleleader.com/documentation/">visit our docuemntation page</a>.
-                <br></br>
-                <p>If you have any questions or concerns, please contact us at stephen@raffleleader.com</p>
+                <p>If you have any questions or concerns, please contact us at stephen@raffleleader.com</p>.
                 <div class="footer">
                     <p>Thank you for joining Raffle Leader!</p>
                     <p>Follow us on <a href="https://x.com/RaffleLeader">Twitter</a> | <a href="https://www.instagram.com/raffleleader/">Instagram</a></p>
@@ -307,11 +302,12 @@ export async function handleGuessStripeSignup({
         `,
       });
     } catch (error) {
-      throw new HttpError(500, 'Failed to send Stripe signup email');
+      throw new HttpError(418, 'Failed to send Stripe signup email');
     }
     return user;
 
   } catch (error: any) {
-    throw new HttpError(500, 'Error creating user with Stripe details:', error);
+    console.log(error);
+    throw new HttpError(420, 'Error creating user with Stripe details:', error);
   }
 }
