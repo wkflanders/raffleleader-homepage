@@ -3,14 +3,14 @@ import styles from './custom-footer.module.css'; // Import the custom CSS module
 
 const footerNavigation = {
   app: [
-    { name: 'Documentation', href: '/docs/intro' },
     { name: 'Blog', href: '/blog' },
+    { name: 'Documentation', href: '/docs/intro' },
     // Add more items here
   ],
   company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-    // Add more items here
+    { name: 'About', href: '/about' },
+    { name: 'Privacy', href: '/#' },
+    { name: 'Terms of Service', href: '/#'}
   ],
 };
 
