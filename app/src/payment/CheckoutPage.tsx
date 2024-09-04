@@ -11,7 +11,7 @@ export default function CheckoutPage() {
     function delayedRedirect() {
       return setTimeout(() => {
         history.push('/account');
-      }, 4000);
+      }, 10000);
     }
 
     const queryParams = new URLSearchParams(location.search);
@@ -37,14 +37,14 @@ export default function CheckoutPage() {
         <div className='py-8 px-4 shadow-xl ring-1 ring-gray-900/10 dark:ring-gray-100/10 sm:rounded-lg sm:px-10'>
           <h1>
             {paymentStatus === 'paid'
-              ? '🥳 Payment Successful!'
+              ? '🥳 Payment Successful! You will be receiving an email with your login information shortly!'
               : paymentStatus === 'canceled'
                 ? '😢 Payment Canceled'
                 : paymentStatus === 'error' && '🙄 Payment Error'}
           </h1>
           {paymentStatus !== 'loading' && (
             <span className='text-center'>
-              You are being redirected to your account page... <br />
+              You are being redirected to the login page... <br />
             </span>
           )}
         </div>
