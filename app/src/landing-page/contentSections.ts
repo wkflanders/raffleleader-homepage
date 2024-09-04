@@ -4,8 +4,8 @@ import { routes } from 'wasp/client/router';
 
 export const navigation = [
   { name: 'Pricing', href: '/pricing' },
-  { name: 'Documentation', href: DocsUrl },
-  { name: 'Blog', href: BlogUrl },
+  { name: 'Documentation', href: '/docs' },
+  { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' }
 ];
 export const features = [
