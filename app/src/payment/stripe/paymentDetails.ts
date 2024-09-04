@@ -7,7 +7,6 @@ type UserStripePaymentDetails = {
   userStripeId: string;
   subscriptionPlan?: PaymentPlanId;
   subscriptionStatus?: SubscriptionStatus;
-  numOfCreditsPurchased?: number;
   datePaid?: Date;
 };
 
