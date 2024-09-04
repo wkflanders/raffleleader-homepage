@@ -35,15 +35,14 @@ export default function AccountPage({ user }: { user: User }) {
                 subscriptionStatus={ user.subscriptionStatus as SubscriptionStatus} 
                 subscriptionPlan={ user.subscriptionPlan } 
                 datePaid={ user.datePaid }
-                credits={ user.credits }
                  />
             </div>
-            <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6'>
-              <dt className='text-sm font-medium text-gray-500 dark:text-white'>Your License Key</dt>
-              <dd className='mt-1 text-sm text-gray-900 dark:text-gray-400 sm:col-span-2 sm:mt-0'>
-                I'm a cool customer.
-              </dd>
-            </div>
+            {!!user.licenseKey && (
+              <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6'>
+                <dt className='text-sm font-medium text-gray-500 dark:text-white'>License Key</dt>
+                <dd className='mt-1 text-sm text-gray-900 dark:text-gray-400 sm:col-span-2 sm:mt-0'>{user.licenseKey}</dd>
+              </div>
+            )}
           </dl>
         </div>
       </div>
@@ -63,10 +62,9 @@ type UserCurrentPaymentPlanProps = {
   subscriptionPlan: string | null
   subscriptionStatus: SubscriptionStatus | null
   datePaid: Date | null
-  credits: number
 }
 
-function UserCurrentPaymentPlan({ subscriptionPlan, subscriptionStatus, datePaid, credits }: UserCurrentPaymentPlanProps) { 
+function UserCurrentPaymentPlan({ subscriptionPlan, subscriptionStatus, datePaid }: UserCurrentPaymentPlanProps) { 
   if (subscriptionStatus && subscriptionPlan && datePaid) {
     return (
       <>
@@ -80,10 +78,6 @@ function UserCurrentPaymentPlan({ subscriptionPlan, subscriptionStatus, datePaid
 
   return (
     <>
-      <dd className='mt-1 text-sm text-gray-900 dark:text-gray-400 sm:col-span-1 sm:mt-0'>
-        Credits remaining: {credits}
-      </dd>
-      <BuyMoreButton />
     </>
   );
 }
