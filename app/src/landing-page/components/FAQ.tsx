@@ -29,7 +29,7 @@ export default function FAQ({ faqs }: { faqs: FAQ[] }) {
               <dt className='text-base font-semibold leading-7 text-gray-900 dark:text-white'>
                 <button 
                   type="button" 
-                  className="flex items-center justify-center gap-2 w-full text-left"
+                  className="flex items-center justify-center gap-2 w-full text-center"
                   onClick={() => toggleAnswer(index)}
                 >
                   {faq.question}
@@ -39,7 +39,7 @@ export default function FAQ({ faqs }: { faqs: FAQ[] }) {
                   ref={el => answersRef.current[index] = el}
                   style={{ height: answerVisible[index] ? `${answersRef.current[index]?.scrollHeight}px` : '0px' }}
               >
-                <p className='text-base leading-7 text-gray-600 dark:text-white'>{faq.answer}</p>
+                <p className='text-base leading-7 text-gray-600 dark:text-white text-left'>{faq.answer}</p>
               </dd>
             </div>
           ))}
