@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
 interface Stat {
   name: string;
@@ -11,7 +12,21 @@ interface StatsProps {
 }
 
 const Stats: React.FC<StatsProps> = ({ stats }) => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleMouseEnter = (position: string) => {
+    if(isMobile) return;
     document.querySelectorAll(`.stat-box`).forEach((box) => {
       box.classList.remove(
         'grow',
@@ -71,16 +86,16 @@ const Stats: React.FC<StatsProps> = ({ stats }) => {
   return (
     <div id='stats' className='mx-auto max-w-7xl sm:px-6 lg:px-8 mt-48'>
       <div className='mx-auto max-w-2xl text-center'>
-        <p className='mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white'>
+        <p className='mt-2 text-xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white'>
           SUPERCHARGED RESULTS
         </p>
       </div>
-      <div className='flex justify-center items-center w-full mt-16 sm:mt-20 lg:mt-24'>
-        <dl className='w-full max-w-2xl grid grid-cols-1 gap-x-8 gap-y-8 lg:max-w-4xl lg:grid-cols-2 lg:gap-y-12 lg:gap-y-12'>
+      <div className='flex justify-center items-center w-full mt-20 lg:mt-24'>
+        <dl className='w-60 md:w-full max-w-2xl grid grid-cols-1 gap-x-12 gap-y-12 lg:max-w-4xl lg:grid-cols-2'>
           {stats.map((stat, index) => (
             <div
               key={stat.name}
-              className={`stat-box relative p-14 border-slate-600 border-2 rounded-3xl ${
+              className={`stat-box relative p-4 lg:p-14 border-slate-600 border-2 rounded-3xl ${
                 index === 0 ? 'top-left' : ''
               } ${index === 1 ? 'top-right' : ''} ${index === 2 ? 'bottom-left' : ''} ${
                 index === 3 ? 'bottom-right' : ''
