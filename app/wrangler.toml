@@ -1,5 +1,4 @@
 name = "raffle-leader"
-type = "javascript"
 
 # Specify where your build output will go
 pages_build_output_dir = ".wasp/build/web-app/build"
