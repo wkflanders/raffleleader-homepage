@@ -1,7 +1,9 @@
 name = "raffle-leader"
 type = "javascript"
-compatibility_date = "2024-09-05"
 
-# Define the Node.js version explicitly
-build.command = "npm install && npm run build"
-build.environment = { NODE_VERSION = "18.18.0" }
+# Specify where your build output will go
+pages_build_output_dir = ".wasp/build/web-app/build"
+
+# If you are using Node.js, specify the required version here
+[env]
+NODE_VERSION = "18.18.0"
