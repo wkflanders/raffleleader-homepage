@@ -39,9 +39,9 @@ export default function LandingPage() {
 
             {/* Closing */}
             <div className="bg-rl_wave bg-top bg-cover bg-no-repeat text-white text-center py-60 rounded-lg">
-              <h2 className="leading-loose text-xl md:text-4xl lg:text-7xl font-normal mb-4">Try <span className="font-semibold tracking-widest">Raffle Leader</span></h2>
-              <p className="leading-loose md:text-3xl lg:text-6xl mb-4">Risk Free For 14 Days</p>
-              <p className="leading-loose text-3xl mb-6 tracking-wider">And spend more time converting leads, not finding them.</p>
+              <h2 className="leading-tight lg:leading-loose text-5xl lg:text-7xl font-normal mb-8 lg:mb-0">Try <span className="font-semibold tracking-widest">Raffle Leader</span></h2>
+              <p className="leading-tight lg:leading-loose text-3xl lg:text-5xl mb-8 lg:mb-4">Risk Free For 14 Days</p>
+              <p className="leading-8 lg:leading-loose text-2xl tracking-wider mb-8 lg:mb-4">And spend more time converting leads, not finding them.</p>
               <div className='mt-10 flex items-center justify-center gap-x-6'>
                 <a
                   href={'/pricing'}
