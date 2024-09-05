@@ -8,7 +8,8 @@
 .fill-container {
   position: relative;
   overflow: hidden;
-  height: 400px; /* Adjust as necessary */
+  height: auto; 
+  padding: 75px;
 }
 
 .fill-animation {
