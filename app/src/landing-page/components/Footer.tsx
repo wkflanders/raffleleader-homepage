@@ -10,7 +10,7 @@ export default function Footer({ footerNavigation }: {
   }
 }) {
   return (
-    <div className='-mt-2 mx-auto dark:bg-boxdark-2'>
+    <div className='-mt-2 lg:mx-auto'>
       <footer
           aria-labelledby='footer-heading'
           className='relative bg-rldark py-24'
@@ -18,7 +18,7 @@ export default function Footer({ footerNavigation }: {
           <h2 id='footer-heading' className='sr-only'>
             Footer
           </h2>
-          <div className='flex items-start justify-start ml-10 mt-10 gap-20'>
+          <div className='flex items-start lg:justify-start ml-3 lg:ml-10 mt-10 gap-20'>
             <div>
               <h3 className='text-sm font-semibold leading-6 text-gray-300'>App</h3>
               <ul role='list' className='mt-6 space-y-4'>
