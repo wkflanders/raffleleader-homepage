@@ -73,6 +73,13 @@ const config = {
         ],
       },
     ],
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-07KK6B93ZM',
+        anonymizeIP: true, // Optional
+      },
+    ],
   ],
 
   themeConfig:
@@ -142,14 +149,10 @@ const config = {
                 label: 'Blog',
                 to: '/blog',
               },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Raffle Leader.`,
       },
       prism: {
         theme: prismThemes.github,
