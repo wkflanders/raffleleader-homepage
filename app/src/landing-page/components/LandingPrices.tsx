@@ -39,7 +39,7 @@ export default function LandingPrices() {
     }
 
     return (
-        <div className='mx-auto max-w-5xl sm:px-6 lg:px-8 mt-60 grid grid-cols-1 gap-y-8 lg:gap-x-8 lg:grid-cols-2'>
+        <div className='mx-auto max-w-5xl w-75 lg:w-full sm:px-6 lg:px-8 mt-60 grid grid-cols-1 gap-y-8 lg:gap-x-8 lg:grid-cols-2'>
             {Object.values(PaymentPlanId).map((planId) => (
                 <div
                     key={planId}
