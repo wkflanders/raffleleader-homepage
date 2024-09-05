@@ -7,14 +7,14 @@ app RaffleLeader {
 
   head: [
         "<meta property='og:type' content='website' />",
-        "<meta property='og:title' content='My Open SaaS App' />",
-        "<meta property='og:url' content='https://opensaas.sh' />",
-        "<meta property='og:description' content='I made a SaaS App. Buy my stuff.' />",
-        "<meta property='og:image' content='https://opensaas.sh/public-banner.png' />",
-        "<meta name='twitter:image' content='https://opensaas.sh/public-banner.png' />",
-        "<meta name='twitter:image:width' content='800' />",
-        "<meta name='twitter:image:height' content='400' />",
-        "<meta name='twitter:card' content='summary_large_image' />",
+        "<meta property='og:title' content='Raffle Leader - The Best WordPress Giveaway Marketing Plugin' />",
+        "<meta property='og:url' content='https://raffleleader.com' />",
+        "<meta property='og:description' content='Easily create beautiful giveaways, contests, and sweepstakes, and customize them exactly to your liking..' />",
+        "<meta property='og:image' content='https://raffleleader.s3.us-east-2.amazonaws.com/raffleleader-social-card-alt.png' />",
+        "<meta name='twitter:image' content='https://raffleleader.s3.us-east-2.amazonaws.com/raffleleader-social-card-alt.png' />",
+        "<meta name='twitter:image:width' content='1200' />",
+        "<meta name='twitter:image:height' content='675' />",
+        "<meta name='twitter:card' content='raffleleader_social_card' />",
         // TODO: You can put your Plausible analytics scripts below (https://docs.opensaas.sh/guides/analytics/):
         // NOTE: Plausible does not use Cookies, so you can simply add the scripts here.
         // Google, on the other hand, does, so you must instead add the script dynamically
@@ -169,6 +169,11 @@ api stripeWebhook {
   entities: [User],
   middlewareConfigFn: import { stripeMiddlewareFn } from "@src/payment/stripe/webhook",
   httpRoute: (POST, "/stripe-webhook")
+}
+
+api checkLicense {
+  fn: import { checkLicense } from "@src/apis/checkLicense",
+  httpRoute: (GET, "/api/check-license/:licenseKey"),
 }
 //#endregion
 //#endregion
