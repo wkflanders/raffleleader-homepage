@@ -8,7 +8,7 @@ const footerNavigation = {
     // Add more items here
   ],
   company: [
-    { name: 'About', href: '/about' },
+    { name: 'About', href: 'https://raffleleader.com/about' },
     { name: 'Privacy', href: '/#' },
     { name: 'Terms of Service', href: '/#'}
   ],
