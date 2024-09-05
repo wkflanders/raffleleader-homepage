@@ -3,7 +3,3 @@ type = "javascript"
 
 # Specify where your build output will go
 pages_build_output_dir = ".wasp/build/web-app/build"
-
-# If you are using Node.js, specify the required version here
-[env]
-NODE_VERSION = "18.18.0"
