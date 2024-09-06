@@ -3,7 +3,7 @@ import { stripe } from './stripeClient';
 import { HttpError } from 'wasp/server'
 
 // WASP_WEB_CLIENT_URL will be set up by Wasp when deploying to production: https://wasp-lang.dev/docs/deploying
-const DOMAIN = process.env.WASP_WEB_CLIENT_URL || 'http://localhost:3000';
+const DOMAIN = process.env.WASP_WEB_CLIENT_URL;
 
 export async function fetchStripeCustomer(customerEmail: string | undefined | null) {
   if(!customerEmail){
