@@ -85,12 +85,12 @@ const Features: React.FC<FeaturesProps> = ({ features, onHowItWorksComplete }) =
         <div
           ref={(el) => (featureRefs.current[index] = el)}
           key={feature.name}
-          className={`snap-start mt-75 mb-96 h-100 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center justify-between gap-y-4 gap-x-4 sm:gap-x-6 md:gap-x-8`}
+          className={`snap-start mt-75 mb-70 h-100 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center justify-between gap-y-4 gap-x-4`}
         >
           <div className={`flex-[2] flex justify-center items-center rounded-lg order-2 md:order-1 px-0 ${index % 2 === 0 ? 'md:pr-20' : 'md:pl-20'}`}>
             <LazyVideo videoSrc={feature.img} className="w-full max-w-full rounded-lg shadow-lg"/>
           </div>
-          <div className="flex-[1] flex justify-center items-center order-1 md:order-2 p-20">
+          <div className={`flex-[1] flex justify-center items-center order-1 md:order-2 ${index % 2 !== 0 ? 'md:pr-20' : 'md:pl-20'}`}>
             <div className="text-center max-w-md">
               <h2 className="text-2xl font-light text-white sm:text-4xl lg:text-6xl pb-4 text-left">
                 {feature.name}
@@ -102,7 +102,7 @@ const Features: React.FC<FeaturesProps> = ({ features, onHowItWorksComplete }) =
           </div>
         </div>
       ))}
-      <div ref={howItWorksRef} style={{ marginTop: '100px', marginBottom: '50px' }}>
+      <div ref={howItWorksRef}>
         <HowItWorksComponent onCompletion={onHowItWorksComplete} />
       </div>
     </div>
