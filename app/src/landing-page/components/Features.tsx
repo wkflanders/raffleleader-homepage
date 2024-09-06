@@ -90,7 +90,7 @@ const Features: React.FC<FeaturesProps> = ({ features, onHowItWorksComplete }) =
           <div className={`flex-[2] flex justify-center items-center rounded-lg order-2 md:order-1 px-0 ${index % 2 === 0 ? 'md:pr-20' : 'md:pl-20'}`}>
             <LazyVideo videoSrc={feature.img} className="w-full max-w-full rounded-lg shadow-lg"/>
           </div>
-          <div className="flex-[1] flex justify-center items-center order-1 md:order-2 p-5">
+          <div className="flex-[1] flex justify-center items-center order-1 md:order-2 p-20">
             <div className="text-center max-w-md">
               <h2 className="text-2xl font-light text-white sm:text-4xl lg:text-6xl pb-4 text-left">
                 {feature.name}
