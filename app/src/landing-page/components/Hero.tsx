@@ -26,7 +26,7 @@ export default function Hero() {
               }}
             />
           </div>
-          <div className='py-24 sm:py-32'>
+          <div className='sm:pb-48 sm:pt-24'>
             <div className='mx-auto max-w-8xl px-6 lg:px-8'>
               <div className='lg:mb-18 mx-auto max-w-3xl text-center'>
                 <h1 className='font-overpass text-5xl sm:text-6xl font-medium text-gray-900 dark:text-white'>
