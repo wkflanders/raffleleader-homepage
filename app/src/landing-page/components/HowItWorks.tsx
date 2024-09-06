@@ -85,7 +85,7 @@ const HowItWorksComponent: React.FC<HowItWorksProps> = ({ onCompletion }) => {
   }, [fillProgress]);
 
   return (
-    <div ref={componentRef} className="py-8 md:py-16 text-center text-white">
+    <div ref={componentRef} className="py-8 md:py-16 mb-24 text-center text-white">
       <h2 className="font-overpass text-2xl md:text-3xl lg:text-5xl font-light text-white mb-6 md:mb-10">How It Works</h2>
       <div className="flex flex-col md:flex-row justify-between items-stretch gap-6 md:gap-8 w-full px-4 md:px-8 lg:px-16">
         {['Create a Giveaway', 'Share Your Giveaway', 'Analyze Your Results'].map((title, index) => (
