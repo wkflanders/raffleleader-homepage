@@ -148,11 +148,11 @@ action updateUserById {
 }
 //#endregion
 
-//#region Payment
-route PricingPageRoute { path: "/pricing", to: PricingPage }
-page PricingPage {
-  component: import PricingPage from "@src/payment/PricingPage"
-}
+// //#region Payment
+// route PricingPageRoute { path: "/pricing", to: PricingPage }
+// page PricingPage {
+//   component: import PricingPage from "@src/payment/PricingPage"
+// }
 
 route CheckoutRoute { path: "/checkout", to: CheckoutPage }
 page CheckoutPage {
