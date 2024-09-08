@@ -1,9 +1,7 @@
 name = "raffle-leader-blog"
 
-[
-build
-]
-command = """
+[build]
+command = '''
 cd app && \
 curl -sSL https://get.wasp-lang.dev/installer.sh | sh && \
 wasp build && \
@@ -19,5 +17,5 @@ npm install && \
 npm run build && \
 mkdir -p ../app/.wasp/build/web-app/build/blog && \
 cp -r build/* ../app/.wasp/build/web-app/build/blog/
-"""
+'''
 output_dir = "app/.wasp/build/web-app/build"
