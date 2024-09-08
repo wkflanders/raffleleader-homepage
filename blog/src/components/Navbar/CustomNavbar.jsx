@@ -16,19 +16,19 @@ function CustomNavbar() {
           </div>
           <div className={styles.navbarCenter}>
               {/* Use external links for Wasp.lang app pages */}
-              <Link to="https://raffleleader.com/pricing" className={styles.navbarLink}>
+              <Link to="https://raffleleader.com/#pricing" className={styles.navbarLink}>
                   Pricing
               </Link>
               {/* Keep internal links for Docusaurus blog and docs */}
-              <Link to={useBaseUrl('blog')} className={styles.navbarLink}>
+              <Link to={useBaseUrl('/')} className={styles.navbarLink}>
                   Blog
               </Link>
               <Link to={useBaseUrl('docs/intro')} className={styles.navbarLink}>
                   Documentation
               </Link>
-              <Link to="https://raffleleader.com/about" className={styles.navbarLink}>
+              {/* <Link to="https://raffleleader.com/about" className={styles.navbarLink}>
                   About
-              </Link>
+              </Link> */}
           </div>
           <div className={styles.navbarRight}>
             <div style={{ visibility: 'hidden' }}>Placeholder</div>

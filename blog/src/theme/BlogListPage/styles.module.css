@@ -5,13 +5,14 @@
   color: #ffffff; /* Text color */
   font-family: 'Overpass', 'sans-serif';
   min-height: 100vh; /* Ensure the background covers the full height */
-  padding: 20px 0; /* Add padding to top and bottom */
+  padding-top: 20px;
 }
 
 .blogListContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
+  margin-top: 118px;
 }
 
 .blogListHeader {
@@ -20,7 +21,7 @@
 }
 
 .blogListHeader h1 {
-  font-size: 3rem;
+  font-size: 3.75rem;
   line-height: 1;
   font-weight: 500;
   margin-bottom: 10px;
@@ -30,7 +31,7 @@
 
 .blogListHeader p {
   font-size: 1.25rem;
-  color: rgb(17 24 39);
+  color: rgb(75 85 99);
 }
 
 .featuredPost {
@@ -175,7 +176,8 @@
 
 .pagination {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 72px;
+  margin-bottom: 72px;
 }
 
 .pagination button {
