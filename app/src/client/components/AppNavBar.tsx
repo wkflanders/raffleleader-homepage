@@ -1,6 +1,6 @@
 import { Link, routes } from 'wasp/client/router';
 import { useAuth } from 'wasp/client/auth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog } from '@headlessui/react';
 import { BiLogIn } from 'react-icons/bi';
 import { AiFillCloseCircle } from 'react-icons/ai';
@@ -11,9 +11,9 @@ import { UserMenuItems } from '../../user/UserMenuItems';
 import { DocsUrl, BlogUrl } from '../../shared/common';
 
 const navigation = [
-  { name: 'Pricing', href: routes.PricingPageRoute.build() },
-  { name: 'Documentation', href: DocsUrl },
+  { name: 'Pricing', href: '#pricing' },
   { name: 'Blog', href: BlogUrl },
+  { name: 'Documentation', href: DocsUrl },
   // { name: 'About', href: routes.AboutPageRoute.build() },
 ];
 
@@ -21,19 +21,43 @@ const NavLogo = () => <img className='h-15 w-30' src={logo} alt='Raffle Leader' 
 
 export default function AppNavBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const { data: user, isLoading: isUserLoading } = useAuth();
+
+  const handleNavClick = (href: string) => {
+    if (href === '#pricing') {
+      const pricingSection = document.getElementById('pricing-section');
+      if (pricingSection) {
+        pricingSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setMobileMenuOpen(false);
+  };
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#pricing') {
+        const pricingSection = document.getElementById('pricing-section');
+        if (pricingSection) {
+          pricingSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   return (
-    <header className='inset-x-0 top-0 z-50 shadow-lg sticky bg-white bg-opacity-50 backdrop-blur-lg backdrop-filter dark:border dark:border-gray-100/10 dark:bg-boxdark-2'>
+    <header className='inset-x-0 top-0 z-50 sticky shadow-lg bg-white bg-opacity-50 backdrop-blur-lg backdrop-filter dark:border dark:border-gray-100/10 dark:bg-boxdark-2'>
       <nav className='flex items-center justify-between p-2 lg:px-8' aria-label='Global'>
         <div className='flex items-center lg:flex-1'>
-            <a
-              href='/'
-              className='flex items-center -m-1.5 p-1.5 text-gray-900 duration-300 ease-in-out hover:text-raffleleader'
-            >
-              <NavLogo />
-            </a>
-          </div>
+          <a
+            href='/'
+            className='flex items-center -m-1.5 p-1.5 text-gray-900 duration-300 ease-in-out hover:text-raffleleader'
+          >
+            <NavLogo />
+          </a>
+        </div>
         <div className='flex lg:hidden'>
           <button
             type='button'
@@ -49,8 +73,14 @@ export default function AppNavBar() {
             <a
               key={item.name}
               href={item.href}
+              onClick={(e) => {
+                if (item.href.startsWith('#')) {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }
+              }}
               className='text-sm font-medium leading-6 text-gray-900 duration-300 ease-in-out hover:text-raffleleader dark:text-white'
-              >
+            >
               {item.name}
             </a>
           ))}
@@ -95,9 +125,16 @@ export default function AppNavBar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      if (item.href.startsWith('#')) {
+                        e.preventDefault();
+                        handleNavClick(item.href);
+                      } else {
+                        setMobileMenuOpen(false);
+                      }
+                    }}
                     className='-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-gray-900 hover:text-raffleleader dark:text-white dark:hover:bg-boxdark-2'
-                    >
+                  >
                     {item.name}
                   </a>
                 ))}
