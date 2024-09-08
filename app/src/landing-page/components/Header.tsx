@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { HiBars3 } from 'react-icons/hi2';
 import { BiLogIn } from 'react-icons/bi';
 import { AiFillCloseCircle } from 'react-icons/ai';
@@ -14,15 +14,51 @@ interface NavigationItem {
   href: string;
 };
 
-export default function Header({ navigation }: { navigation: NavigationItem[] }) {
+interface HeaderProps {
+  navigation: NavigationItem[];
+  onPricingClick: () => void;
+}
+
+export default function Header({ navigation, onPricingClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { data: user, isLoading: isUserLoading } = useAuth();
 
   const NavLogo = () => <img className='h-15 w-30' src={logo} alt='Raffle Leader' />;
 
+  const handleNavClick = (href: string) => {
+    if (href === '#pricing') {
+      onPricingClick();
+      setTimeout(() => {
+        const pricingSection = document.getElementById('pricing-section');
+        if (pricingSection) {
+          pricingSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100); // Small delay to ensure the section is rendered
+    }
+    setMobileMenuOpen(false);
+  };
+
+  useEffect(() => {
+    // Handle hash changes for direct links
+    const handleHashChange = () => {
+      if (window.location.hash === '#pricing') {
+        onPricingClick();
+        setTimeout(() => {
+          const pricingSection = document.getElementById('pricing-section');
+          if (pricingSection) {
+            pricingSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [onPricingClick]);
+
   return (
-    <header className='shadow-lg absolute inset-x-0 top-0 z-50 dark:bg-boxdark-2'>
+    <header className='shadow-lg sticky absolute inset-x-0 top-0 z-50 bg-white/90'>
         <nav className='flex items-center justify-between p-2 lg:px-8' aria-label='Global'>
           <div className='flex items-center lg:flex-1'>
             <a
@@ -47,6 +83,10 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
               <a
                 key={item.name}
                 href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
                 className='text-sm font-medium leading-6 text-gray-900 duration-300 ease-in-out hover:text-raffleleader dark:text-white'
               >
                 {item.name}
@@ -93,7 +133,10 @@ export default function Header({ navigation }: { navigation: NavigationItem[] })
                     <a
                       key={item.name}
                       href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(item.href);
+                      }}
                       className='-mx-3 block rounded-lg px-3 py-2 text-base leading-7 text-gray-900 hover:text-raffleleader dark:text-white dark:hover:bg-boxdark-2'
                     >
                       {item.name}
