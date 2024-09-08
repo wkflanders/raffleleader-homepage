@@ -3,9 +3,9 @@ import avatarPlaceholder from '../client/static/avatar-placeholder.png';
 import { routes } from 'wasp/client/router';
 
 export const navigation = [
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Documentation', href: '/docs' },
+  { name: 'Pricing', href: '#pricing' },
   { name: 'Blog', href: '/blog' },
+  { name: 'Documentation', href: '/docs' },
   // { name: 'About', href: '/about' }
 ];
 export const features = [
@@ -79,40 +79,41 @@ export const stats = [
 export const faqs = [
   {
     id: 1,
-    question: 'Is RaffleLeader right for me?',
-    answer: "It doesn't matter if you're a business owner or an influencer, if you want to get leads and grow quickly with viral giveaway marketing, then RaffleLeader is right for you.",
+    question: 'Is Raffle Leader right for me?',
+    answer: "It doesn't matter if you're a business owner with 0 followers or an influencer, if you want to get leads and grow quickly with viral giveaway marketing, then RaffleLeader is right for you.",
   },
   {
     id: 2,
-    question: "What's required to use RaffleLeader?",
+    question: "What's required to use Raffle Leader?",
     answer: "A self-hosted WordPress site. That's it.",
   },
   {
     id: 3,
-    question: "Does RaffleLeader require coding?",
-    answer: "No. RaffleLeader is a one-click WordPress plugin. All you need to do to start getting leads is to install the plugin.",
+    question: "Does Raffle Leader require code?",
+    answer: "No. Raffle Leader is a one-click WordPress plugin. All you need to do is install the plugin.",
   },
   {
     id: 4,
-    question: "Will RaffleLeader slow down my site?",
+    question: "Will Raffle Leader slow down my site?",
     answer: "No. We hate slow sites just as much as you do. The last thing we'd do is torture you with one.",
   },
   {
     id: 5,
-    question: "Can my clients use RaffleLeader?",
-    answer: "Yes. All of our plans can be used with unlimited sites.",
+    question: "How is Raffle Leader better than other giveaway plugins?",
+    answer: "No other giveaway plugin is nearly as customizable or as powerful as Raffle Leader. Basically, think of Raffle Leader like a Canva that can also make you money.",
   },
   {
     id: 6,
-    question: "Does RaffleLeader work on non-WordPress sites?",
-    answer: "No. RaffleLeader is a WordPress plugin, meaning that it only works on self-hosted WordPress sites.",
+    question: "Does Raffle Leader work on non-WordPress sites?",
+    answer: "No. Raffle Leader is a WordPress plugin, meaning that it only works on self-hosted WordPress sites.",
   },
   {
     id: 7,
-    question: "Can I try it out for free?",
-    answer: "Yes and no. We don't offer free trials, however, we do offer a 14-day money back guarantee. So, if you don't like RaffleLeader for whatever reason, just let us know in the first 14 days and we'll refund 100% of your money.",
+    question: "How often is Raffle Leader updated?",
+    answer: "Our life is dedicated to improving Raffle Leader. So, we're aiming for a fresh update every week. If there are features you'd like to see, please contact us"
   },
 ];
+
 export const footerNavigation = {
   app: [
     { name: 'Documentation', href: DocsUrl },
