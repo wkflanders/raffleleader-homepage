@@ -119,7 +119,7 @@ function prettyPrintEndOfBillingPeriod(date: Date) {
 function BuyMoreButton() {
   return (
     <div className='ml-4 flex-shrink-0 sm:col-span-1 sm:mt-0'>
-      <Link to='/pricing' className='font-medium text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500'>
+      <Link to={'/#pricing' as any} className='font-medium text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500'>
         Buy More/Upgrade
       </Link>
     </div>
