@@ -1,0 +1,22 @@
+name: raffle-leader
+build:
+  command: |
+    # Build Wasp app
+    cd app && \
+    curl -sSL https://get.wasp-lang.dev/installer.sh | sh && \
+    wasp build && \
+    cd .wasp/build/web-app && \
+    npm install && \
+    REACT_APP_API_URL=https://raffleleader.fly.dev \
+    REACT_APP_GOOGLE_ANALYTICS_ID=G-07KK6B93ZM  \
+    REACT_APP_STRIPE_CUSTOMER_PORTAL=https://billing.stripe.com/p/login/3cs2bl4oD2rGcYo3cc \
+    npm run build && \
+    cd ../../../../.. && \
+    # Build Docusaurus blog
+    cd blog && \
+    npm install && \
+    npm run build && \
+    # Integrate blog into Wasp build
+    mkdir -p ../app/.wasp/build/web-app/build/blog && \
+    cp -r build/* ../app/.wasp/build/web-app/build/blog/
+  output: app/.wasp/build/web-app/build
