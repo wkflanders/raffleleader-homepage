@@ -1,59 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Existing styles... */
+
+/* New Footer Styles */
 .footerContainer {
-  width: 100%;
-  background-color: #1000CE;
+  background-color: #1000CE; /* bg-rldark */
+  font-family: 'Overpass', sans-serif;
+  letter-spacing: 0.025em;
+  font-weight: 300;
+  color: white;
+  line-height: 1.5rem;
 }
 
 .footer {
-  position: relative;
-  background-color: #1000CE;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+  padding: 3.75rem 6.25rem; /* px-25 py-15 */
 }
 
 .footerContent {
   display: flex;
+  justify-content: space-between;
   align-items: flex-start;
-  justify-content: flex-start;
-  margin-left: 2.5rem;
-  margin-top: 2.5rem;
-  gap: 5rem;
 }
 
-.footerTitle {
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.5;
-  color: #d1d5db;
-}
-
-.footerList {
-  margin-top: 1.5rem;
-  list-style-type: none;
-  padding: 0;
-}
-
-.footerListItem {
-  margin-bottom: 1rem;
+.footerLinks {
+  display: flex;
+  flex-direction: column;
 }
 
 .footerLink {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: #ffffff;
+  color: white;
   text-decoration: none;
 }
 
 .footerLink:hover {
-  color: #d1d5db;
+  text-decoration: underline;
+  color: white;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialIcon {
+  cursor: pointer;
+}
+
+.footerBottom {
+  margin-top: 3rem; /* mt-16 */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.copyrightText {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.termsLink {
+  font-size: 1rem;
+  text-decoration: underline;
+  color: white;
+}
+
+.termsLink:hover{
+  color: white;
+}
+
+/* SVG styles */
+.svgIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.svgIconStroke {
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.svgIconFill {
+  fill: white;
 }
