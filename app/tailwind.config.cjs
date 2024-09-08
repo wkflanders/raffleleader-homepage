@@ -14,7 +14,8 @@ module.exports = {
         margin: ['before'],
       },
       backgroundImage: {
-        'rl_wave': "url(\"data:image/svg+xml;utf8,<svg width='1512' height='717' viewBox='0 0 1512 717' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M-6 176.067V716.424H1518V176.067C1411.89 127.363 1151.86 0.423828 772.9 0.423828C393.943 0.423828 87.3267 137.208 -6 176.067Z' fill='url(%23paint0_linear_1626_1386)'/><defs><linearGradient id='paint0_linear_1626_1386' x1='756' y1='0.423828' x2='756' y2='716.424' gradientUnits='userSpaceOnUse'><stop stop-color='%231501FE'/><stop offset='1' stop-color='%231501FE'/></linearGradient></defs></svg>\")",
+        'rl_wave': `url("data:image/svg+xml;utf8,<svg width='1512' height='577' viewBox='0 0 1512 577' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M-12 176.067V576.424H1512V176.067C1405.89 127.363 1145.86 0.423828 766.9 0.423828C387.943 0.423828 81.3267 137.208 -12 176.067Z' fill='url(%23paint0_linear_1626_1386)'/><defs><linearGradient id='paint0_linear_1626_1386' x1='750' y1='0.423828' x2='750' y2='716.424' gradientUnits='userSpaceOnUse'><stop stop-color='%231501FE'/><stop offset='1' stop-color='%231501FE'/></linearGradient></defs></svg>")`,
+        'rl_price': `url("data:image/svg+xml;utf8,<svg width='1512' height='1284' viewBox='0 0 1512 1284' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='1512' height='1283.1' fill='url(%23paint0_linear_2983_2)'/><defs><linearGradient id='paint0_linear_2983_2' x1='756' y1='0' x2='756' y2='1283.1' gradientUnits='userSpaceOnUse'><stop stop-color='white'/><stop offset='0.5' stop-color='%23C7C1FF'/><stop offset='1' stop-color='white'/></linearGradient></defs></svg>")`
       },
       colors: {
         current: 'currentColor',
