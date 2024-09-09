@@ -12,7 +12,7 @@ const CursorIcon = () => (
 
 export default function Hero() {
   return (
-    <div className='shado-xl mx-auto max-w-7xl px-8 relative pt-14 w-full'>
+    <div className='mx-auto max-w-7xl px-8 relative pt-14 w-full'>
       <div
         className='absolute top-0 right-0 -z-10 transform-gpu overflow-hidden w-full blur-3xl sm:top-0 '
         aria-hidden='true'
