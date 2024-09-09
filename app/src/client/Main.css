@@ -11,6 +11,14 @@ html, body {
   -webkit-overflow-scrolling: touch; /* for iOS */
 }
 
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
 .terms-content h1 {
   font-size: 2em;
   font-weight: bold;

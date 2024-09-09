@@ -12,6 +12,14 @@ html, body {
   -webkit-overflow-scrolling: touch; /* for iOS */
 }
 
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
 :root {
   --ifm-color-primary: #1501FE;
   --ifm-color-primary-dark: #1300df;
