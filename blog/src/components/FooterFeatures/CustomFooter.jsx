@@ -1,4 +1,5 @@
 import React from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './custom-footer.module.css';
 
 const CustomFooter = () => {
@@ -8,10 +9,13 @@ const CustomFooter = () => {
         <div className={styles.footerContent}>
           <div className={styles.footerLinks}>
             <a href="mailto:stephen@raffleleader.com" className={styles.footerLink}>Contact</a>
-            <a href="/blog" className={styles.footerLink}>Blog</a>
-            <a href="/docs/intro" className={styles.footerLink}>Documentation</a>
+            <Link to={useBaseUrl('/blog')} className={styles.footerLink}>
+                  Blog
+            </Link>
+            <Link to={useBaseUrl('docs/intro')} className={styles.footerLink}>
+                  Documentation
+            </Link>
           </div>
-          
           <div className={styles.socialIcons}>
             {/* X (formerly Twitter) Icon */}
             <a href="https://twitter.com/your_twitter_handle" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
