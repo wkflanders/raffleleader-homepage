@@ -35,6 +35,8 @@ export default function Header({ navigation, onPricingClick }: HeaderProps) {
           pricingSection.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100); // Small delay to ensure the section is rendered
+    } else {
+      window.location.href = href;
     }
     setMobileMenuOpen(false);
   };

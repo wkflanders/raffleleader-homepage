@@ -8,12 +8,11 @@ import { HiBars3 } from 'react-icons/hi2';
 import logo from '../static/TEXT-LOGO.svg';
 import DropdownUser from '../../user/DropdownUser';
 import { UserMenuItems } from '../../user/UserMenuItems';
-import { DocsUrl, BlogUrl } from '../../shared/common';
 
 const navigation = [
   { name: 'Pricing', href: '#pricing' },
-  { name: 'Blog', href: BlogUrl },
-  { name: 'Documentation', href: DocsUrl },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Documentation', href: '/docs/intro' },
   // { name: 'About', href: routes.AboutPageRoute.build() },
 ];
 
@@ -29,6 +28,8 @@ export default function AppNavBar() {
       if (pricingSection) {
         pricingSection.scrollIntoView({ behavior: 'smooth' });
       }
+    } else {
+      window.location.href = href;
     }
     setMobileMenuOpen(false);
   };

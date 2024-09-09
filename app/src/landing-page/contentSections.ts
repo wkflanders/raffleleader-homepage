@@ -8,6 +8,7 @@ export const navigation = [
   { name: 'Documentation', href: '/docs' },
   // { name: 'About', href: '/about' }
 ];
+
 export const features = [
   {
     name: 'Fully Customizable',
@@ -113,15 +114,3 @@ export const faqs = [
     answer: "Our life is dedicated to improving Raffle Leader. So, we're aiming for a fresh update every week. If there are features you'd like to see, please contact us"
   },
 ];
-
-export const footerNavigation = {
-  app: [
-    { name: 'Documentation', href: DocsUrl },
-    { name: 'Blog', href: BlogUrl },
-  ],
-  company: [
-    { name: 'About', href: 'https://wasp-lang.dev' },
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms of Service', href: '#' },
-  ],
-};
