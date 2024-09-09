@@ -9,6 +9,57 @@ body{
   overflow-x: hidden;
 }
 
+.terms-content h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.terms-content h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.terms-content h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.terms-content h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.terms-content p {
+  margin-bottom: 1em;
+  line-height: 1.5;
+}
+
+.terms-content ul, .terms-content ol {
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+
+.terms-content li {
+  margin-bottom: 0.5em;
+}
+
+.terms-content a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.terms-content a:hover {
+  text-decoration: none;
+}
+
 .fill-container {
   position: relative;
   overflow: hidden;

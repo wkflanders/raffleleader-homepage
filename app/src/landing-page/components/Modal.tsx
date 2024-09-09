@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             <CloseIcon />
           </button>
         </div>
-        <div className="p-6 overflow-y-auto max-h-[calc(100vh-10rem)]">
+        <div className="p-6 overflow-y-auto max-h-[calc(100vh-10rem)] terms-content">
           {children}
         </div>
       </div>
