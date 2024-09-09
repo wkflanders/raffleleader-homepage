@@ -16,7 +16,7 @@ const config = {
   url: 'https://raffleleader.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/blog/',
 
   // // GitHub pages deployment config.
   // // If you aren't using GitHub pages, you don't need these.
@@ -41,6 +41,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          routeBasePath: 'docs'
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
@@ -49,6 +50,7 @@ const config = {
         blog: {
           showReadingTime: true,
           postsPerPage: 'ALL',
+          routeBasePath: '',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
