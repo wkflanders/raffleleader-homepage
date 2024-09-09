@@ -1,6 +1,7 @@
 import React from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './custom-footer.module.css';
+import Link from '@docusaurus/Link';
 
 const CustomFooter = () => {
   return (
