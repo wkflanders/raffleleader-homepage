@@ -18,7 +18,7 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 1rem 6.25rem; /* px-8 py-8 for mobile */
+    padding: 6.25rem 1rem; /* px-8 py-8 for mobile */
   }
 }
 
