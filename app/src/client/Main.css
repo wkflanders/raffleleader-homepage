@@ -7,7 +7,7 @@
 
 html, body {
   overscroll-behavior-x: none;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   -webkit-overflow-scrolling: touch; /* for iOS */
 }
 
