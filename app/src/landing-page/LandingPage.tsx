@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   features,
   navigation,
@@ -18,14 +18,20 @@ export default function LandingPage() {
 
   const handlePricingClick = () => {
     setHowItWorksCompleted(true);
+    setTimeout(() => {
+      const pricingSection = document.getElementById('pricing-section');
+      if (pricingSection) {
+        pricingSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
-
+  
   return (
     <div className='bg-white dark:bg-boxdark-2 no-scrollbar '>
       <Header navigation={navigation} onPricingClick={handlePricingClick} />
 
       <main className='isolate dark:bg-boxdark-2 overflow-x-hidden'>
-        <Hero />
+        <Hero onPricingClick={handlePricingClick}/>
         <Features features={features} onHowItWorksComplete={() => setHowItWorksCompleted(true)} />
         {howItWorksCompleted && (
           <>
@@ -46,7 +52,11 @@ export default function LandingPage() {
               <p className="text-xl md:text-3xl tracking-wider px-6 md:px-0" style={{ lineHeight: 1.2 }}>Let Raffle Leader bring them to you</p>
               <div className='mt-10 flex items-center justify-center gap-x-6'>
                 <a
-                  href={'#pricing'}
+                  href='#pricing'
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                    e.preventDefault();
+                    handlePricingClick();
+                  }}
                   className='rounded-lg px-8 md:px-17 py-4 text-base font-semibold bg-white text-raffleleader ring-1 ring-inset ring-gray-200 hover:ring-2 hover:ring-gray-200 hover:bg-gray-200 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white'
                 >
                   Get Raffle Leader
