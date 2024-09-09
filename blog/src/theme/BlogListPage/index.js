@@ -3,7 +3,7 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.css'; // Import the CSS module
+import styles from './styles.module.css';
 
 const BlogListPage = ({ metadata, items }) => {
   const { siteConfig } = useDocusaurusContext();
@@ -33,19 +33,19 @@ const BlogListPage = ({ metadata, items }) => {
       description,
       imageUrl,
       date: new Date(date),
-      featured: frontMatter.featured || false,
     };
   });
 
   // Sort blog posts chronologically with most recent first
   blogPosts.sort((a, b) => b.date - a.date);
 
-  let featuredPost = blogPosts.find(post => post.featured);
-  const nonFeaturedPosts = blogPosts.filter(post => !post.featured);
+  // Set the most recent post as the featured post
+  const featuredPost = blogPosts[0];
+  const nonFeaturedPosts = blogPosts.slice(1);
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 7; // Set posts per page to 7 since 1 will be featured
+  const postsPerPage = 7;
 
   // Calculate the posts to display on the current page
   const indexOfLastPost = currentPage * postsPerPage;
@@ -70,7 +70,7 @@ const BlogListPage = ({ metadata, items }) => {
         <div className={styles.blogListContainer}>
           <div className={styles.blogListHeader}>
             <h1>Raffle Leader Blog</h1>
-            <p>Finally create fully customizable contests and giveaways in WordPress!</p>
+            <p>Everything you need to know to grow your business</p>
           </div>
           {currentPage === 1 && featuredPost && (
             <div className={styles.featuredPost}>
