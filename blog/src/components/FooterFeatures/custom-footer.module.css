@@ -16,6 +16,12 @@
   padding: 3.75rem 6.25rem; /* px-25 py-15 */
 }
 
+@media (max-width: 768px) {
+  .footer {
+    padding: 1rem 6.25rem; /* px-8 py-8 for mobile */
+  }
+}
+
 .footerContent {
   display: flex;
   justify-content: space-between;

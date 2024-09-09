@@ -78,7 +78,6 @@ const CustomFooter = () => {
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <div className={styles.modalText}>
         <h2 className="text-2xl font-bold mb-4">Terms & Privacy</h2>
-          <h1>Privacy Policy</h1>
           <p>Last updated: November 20, 2023</p>
           <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
           <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
