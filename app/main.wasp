@@ -174,7 +174,9 @@ api stripeWebhook {
 api checkLicense {
   fn: import { checkLicense } from "@src/apis/checkLicense",
   httpRoute: (GET, "/api/check-license/:licenseKey"),
+  middlewareConfigFn: import { checkLicenseMiddleware } from "@src/apis/checkLicenseMiddleware",
 }
+
 //#endregion
 //#endregion
 
