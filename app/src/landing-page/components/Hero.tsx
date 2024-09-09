@@ -57,7 +57,7 @@ export default function Hero() {
             </div>
           </div>
           <div className='mt-14 flow-root sm:mt-14 '>
-            <div className='rounded-xl mt-6 mb-24 md:mt-0 md:mb-0 -m-4 lg:rounded-2xl lg:p-4'>
+            <div className='rounded-xl mt-4 mb-20 md:mt-0 md:mb-0 -m-4 lg:rounded-2xl lg:p-4'>
               <img
                 src={raffleLeaderBanner}
                 alt='App screenshot'
