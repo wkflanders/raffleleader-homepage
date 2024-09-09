@@ -2,13 +2,13 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-rldark font-overpass tracking-wide font-light text-white px-25 py-15">
+    <footer className="bg-rldark font-overpass tracking-wide font-light text-white px-4 md:px-25 py-15">
       <div className="flex justify-between items-start">
         <div className="flex flex-col">
           {/* <a href="/about" className="hover:underline">About</a> */}
           <a href="mailto:stephen@raffleleader.com" className="hover:underline">Contact</a>
           <a href="/blog" className="hover:underline">Blog</a>
-          <a href="/docs/intro" className="hover:underline">Documentation</a>
+          <a href="/blog/docs/intro" className="hover:underline">Documentation</a>
         </div>
         
         <div className="flex space-x-4">
@@ -40,11 +40,11 @@ const Footer = () => {
       </div>
       
       <div className="mt-16 flex justify-between items-end">
-        <p className="text-base" style={{ lineHeight: 1.5 }}>
+        <p className="text-xs md:text-base" style={{ lineHeight: 1.5 }}>
           2024, Capella Software Company LLC. Raffle Leader is a<br />
           registered trademark of Capella Software Company LLC.
         </p>
-        <a href="/terms-privacy" className="text-md underline">TERMS & PRIVACY</a>
+        <a href="/terms-privacy" className="text-xs md:text-md underline">TERMS & PRIVACY</a>
       </div>
     </footer>
   );
