@@ -22,6 +22,28 @@ export default function App({ children }: { children: ReactNode }) {
     return location.pathname.startsWith('/admin');
   }, [location]);
 
+  window.addEventListener('message', function (event) {
+    // Make sure the message is from a trusted origin
+    if (event.origin !== 'https://raffleleader.com') return;
+
+    if (event.data.type === 'SCROLL_TO_PRICING') {
+      const pricingSection = document.getElementById('pricing-section');
+      if (pricingSection) {
+        pricingSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, false);
+
+  // Also handle the case when the page loads with a #pricing hash
+  window.addEventListener('load', function () {
+    if (window.location.hash === '#pricing') {
+      const pricingSection = document.getElementById('pricing-section');
+      if (pricingSection) {
+        pricingSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
+
   useEffect(() => {
     if (user) {
       const lastSeenAt = new Date(user.lastActiveTimestamp);
