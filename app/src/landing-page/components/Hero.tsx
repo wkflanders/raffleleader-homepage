@@ -9,8 +9,16 @@ const CursorIcon = () => (
   </svg>
 );
 
+interface HeroProps {
+  onPricingClick: () => void;
+}
 
-export default function Hero() {
+const Hero: React.FC<HeroProps> = ({ onPricingClick }) => {
+  const handleGetRaffleLeader = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    onPricingClick();
+  };
+  
   return (
     <div className='mx-auto max-w-7xl px-8 relative pt-14 w-full'>
       <div
@@ -48,7 +56,8 @@ export default function Hero() {
             </p>
             <div className='mt-10 flex items-center justify-center gap-x-6'>
               <a
-                href={'#pricing'}
+                href='#pricing'
+                onClick={handleGetRaffleLeader}
                 className='rounded-lg px-10 md:px-17 py-4 text-xs md:text-sm font-semibold bg-raffleleader text-white ring-1 ring-inset ring-gray-200 hover:ring-2 hover:ring-gray-200 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 relative'
               >
                 Get Raffle Leader
@@ -72,3 +81,5 @@ export default function Hero() {
     </div>
   )
 }
+
+export default Hero;
