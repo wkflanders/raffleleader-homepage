@@ -75,13 +75,13 @@ const HowItWorksComponent: React.FC<HowItWorksProps> = ({ onCompletion }) => {
   }, [fillProgress]);
 
   return (
-    <div ref={componentRef} className="py-8 md:py-16 mb-40 text-center text-white">
+    <div ref={componentRef} className="py-8 md:py-16 mb-12 md:mb-40 mt-16 md:mt-0text-center text-white">
       <div className='mx-auto max-w-2xl text-center'>
         <p className='mt-2 text-3xl md:text-5xl font-medium tracking-tight text-white'>
           How It Works
         </p>
       </div>      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full px-4 md:px-8 lg:px-16 mt-20 lg:mt-24">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 w-full px-4 md:px-8 lg:px-16 mt-12 md:mt-20 lg:mt-24">
         {['Create a Giveaway', 'Share Your Giveaway', 'Analyze Your Results'].map((title, index) => (
           <div key={index} ref={el => boxRefs.current[index] = el} className="relative aspect-square bg-opacity-20 bg-white text-white p-4 md:p-6 rounded-2xl border border-white overflow-hidden">
             <div className="fill-animation absolute bottom-0 left-0 w-full bg-white bg-opacity-20 transition-all duration-500 ease-in-out"></div>
