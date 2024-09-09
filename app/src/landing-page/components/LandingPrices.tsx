@@ -66,14 +66,14 @@ export default function LandingPrices() {
     };
 
     return (
-        <div id="pricing-section" className="bg-rl_price md:bg-contain bg-center relative overflow-hidden mt-48">
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div id="pricing-section" className="md:bg-rl_price md:bg-contain bg-center relative overflow-hidden mt-16 md:mt-48">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8 md:py-16">
                 <div className="mx-auto max-w-2xl text-center">
-                    <p className="mt-2 text-3xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white">
+                    <p className="font-overpass mt-2 text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
                         Pricing
                     </p>
                 </div>
-                <div className="mx-auto max-w-3xl w-full grid grid-cols-1 gap-y-8 lg:grid-cols-2 mt-20 lg:mt-24">
+                <div className="mx-auto max-w-3xl w-full grid grid-cols-1 gap-y-8 lg:grid-cols-2 mt-12 md:mt-20 lg:mt-24">
                     {Object.values(PaymentPlanId).map((planId) => (
                         <div
                             key={planId}
@@ -81,7 +81,7 @@ export default function LandingPrices() {
                                 'relative flex flex-col grow justify-between rounded-xl bg-white overflow-hidden border-2 border-gray-600 shadow-xl',
                                 {
                                     '': planId === bestDealPaymentPlanId,
-                                    'border-r-0 lg:my-20': planId !== bestDealPaymentPlanId,
+                                    'md:border-r-0 lg:my-20': planId !== bestDealPaymentPlanId,
                                 }
                             )}
                         >

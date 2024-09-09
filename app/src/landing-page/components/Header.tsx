@@ -35,6 +35,8 @@ export default function Header({ navigation, onPricingClick }: HeaderProps) {
           pricingSection.scrollIntoView({ behavior: 'smooth' });
         }
       }, 100); // Small delay to ensure the section is rendered
+    } else {
+      window.location.href = href;
     }
     setMobileMenuOpen(false);
   };
@@ -58,7 +60,7 @@ export default function Header({ navigation, onPricingClick }: HeaderProps) {
   }, [onPricingClick]);
 
   return (
-    <header className='shadow-lg sticky absolute inset-x-0 top-0 z-50 bg-white/90'>
+    <header className='shadow-lg sticky inset-x-0 top-0 z-10 bg-white/90'>
         <nav className='flex items-center justify-between p-2 lg:px-8' aria-label='Global'>
           <div className='flex items-center lg:flex-1'>
             <a

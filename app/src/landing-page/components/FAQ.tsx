@@ -20,19 +20,19 @@ export default function FAQ({ faqs }: { faqs: FAQ[] }) {
 
   return (
     <div className='flex justify-center items-center'>
-      <div className='mt-32 mb-32 mx-auto max-w-2xl divide-y divide-gray-900/10 dark:divide-gray-200/10 px-6 pb-8 sm:pb-24 sm:pt-12 lg:max-w-7xl lg:px-8 lg:py-32'>
+      <div className='mt-20 md:mt-24 mb-12 md:mb-32 mx-auto max-w-2xl divide-y divide-gray-900/10 dark:divide-gray-200/10 px-6 pb-24 lg:max-w-7xl lg:px-8 lg:py-32'>
         <div className='mx-auto max-w-2xl text-center'>
-          <p className='mt-2 text-3xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white'>
+          <p className='font-overpass mt-2 text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white'>
             FAQ
           </p>
         </div>
-        <dl className='mt-10 space-y-8 divide-y divide-gray-900/10 mt-20 lg:mt-24'>
+        <dl className='mt-10 space-y-8 divide-y divide-gray-900/10 md:mt-20 lg:mt-24'>
           {faqs.map((faq, index) => (
             <div key={faq.id} className='pt-8'>
               <dt className='text-base text-gray-700 font-semibold leading-7 dark:text-white'>
                 <button
                   type="button"
-                  className="flex items-end text-2xl w-full text-left"
+                  className="flex items-end md:text-2xl w-full text-left"
                   onClick={() => toggleAnswer(index)}
                 >
                   <span

@@ -19,7 +19,7 @@ const LazyVideo: React.FC<LazyVideoProps> = ({ videoSrc, className }) => {
         });
       },
       {
-        rootMargin: '0px 0px', // Trigger as soon as the video is in the viewport
+        rootMargin: '1000px 0px',
       }
     );
 
@@ -51,7 +51,7 @@ const LazyVideo: React.FC<LazyVideoProps> = ({ videoSrc, className }) => {
       loop
       muted
       playsInline
-      preload="metadata" // Preload only the metadata initially
+      preload="auto" // Preload only the metadata initially
     />
   );
 };

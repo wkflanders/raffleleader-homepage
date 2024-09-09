@@ -85,12 +85,12 @@ const Features: React.FC<FeaturesProps> = ({ features, onHowItWorksComplete }) =
         <div
           ref={(el) => (featureRefs.current[index] = el)}
           key={feature.name}
-          className={`snap-start mt-75 mb-70 h-100 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center justify-between gap-y-4 gap-x-4`}
+          className={`snap-start mt-18 md:mt-75 md:mb-70 h-100 flex flex-col md:flex-row ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} items-center justify-between gap-y-4 gap-x-4`}
         >
           <div className={`flex-[2] flex justify-center items-center rounded-lg order-2 md:order-1 px-0`}>
             <LazyVideo videoSrc={feature.img} className="w-full max-w-full rounded-lg shadow-lg"/>
           </div>
-          <div className={`flex-[1] flex justify-center items-center order-1 md:order-2 p-20`}>
+          <div className={`flex-[1] flex justify-center items-center order-1 md:order-2 p-6 md:p-20`}>
             <div className="text-center max-w-md">
             <h2 className="text-2xl font-light text-white sm:text-4xl lg:text-6xl pb-4 text-left" style={{ lineHeight: '1.2' }}>
               {feature.name}

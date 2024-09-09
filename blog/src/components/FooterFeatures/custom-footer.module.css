@@ -16,6 +16,12 @@
   padding: 3.75rem 6.25rem; /* px-25 py-15 */
 }
 
+@media (max-width: 768px) {
+  .footer {
+    padding: 6.25rem 1rem; /* px-8 py-8 for mobile */
+  }
+}
+
 .footerContent {
   display: flex;
   justify-content: space-between;
@@ -84,4 +90,75 @@
 
 .svgIconFill {
   fill: white;
+}
+
+/* Modal styles */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 0.5rem;
+  max-width: 42rem;
+  width: 100%;
+  margin: 1rem;
+  margin-top: 3.75rem;
+  position: relative;
+}
+
+.modalHeader {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.closeButton {
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  color: #374151;
+}
+
+.modalBody {
+  padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 10rem);
+}
+
+.modalText {
+  color: #374151;
+}
+
+/* Update existing styles */
+.termsLink {
+  font-size: 1rem;
+  text-decoration: underline;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.termsLink:hover {
+  color: #e5e5e5;
 }

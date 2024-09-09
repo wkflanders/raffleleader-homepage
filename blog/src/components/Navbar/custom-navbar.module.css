@@ -38,3 +38,29 @@
   color: #1501FE;
   text-decoration: none;
 }
+
+@media (max-width: 768px) {
+  .customNavbar {
+    padding: 1.5rem 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .navbarLeft, .navbarCenter, .navbarRight {
+    flex-basis: 100%;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .navbarRight{
+    height: 0;
+  }
+
+  .navbarLeft{
+    display: none;
+  }
+
+  .navbarLink {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
