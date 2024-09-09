@@ -41,13 +41,13 @@ export default function LandingPage() {
             <FAQ faqs={faqs}/>
 
             {/* Closing */}
-            <div className="bg-rl_wave bg-top bg-cover bg-no-repeat text-white text-center py-30 rounded-lg -mb-2 -mx-2">
-              <h2 className="text-5xl lg:text-7xl font-normal mb-6" style={{ lineHeight: 1.2 }}>Stop Wasting Time <br></br> Chasing Customers</h2>
-              <p className="text-3xl tracking-wider" style={{ lineHeight: 1.2 }}>Let Raffle Leader bring them to you</p>
+            <div className="bg-rl_wave bg-top bg-cover bg-no-repeat text-white text-center py-20 md:py-30 rounded-lg -mb-2 -mx-2">
+              <h2 className="text-3xl md:text-5xl lg:text-7xl font-normal mb-6" style={{ lineHeight: 1.2 }}>Stop Wasting Time <br></br> Chasing Customers</h2>
+              <p className="text-xl md:text-3xl tracking-wider px-6 md:px-0" style={{ lineHeight: 1.2 }}>Let Raffle Leader bring them to you</p>
               <div className='mt-10 flex items-center justify-center gap-x-6'>
                 <a
-                  href={'/pricing'}
-                  className='rounded-lg px-17 py-4 text-xl font-semibold bg-white text-raffleleader ring-1 ring-inset ring-gray-200 hover:ring-2 hover:ring-gray-200 hover:bg-gray-200 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white'
+                  href={'#pricing'}
+                  className='rounded-lg px-8 md:px-17 py-4 text-base font-semibold bg-white text-raffleleader ring-1 ring-inset ring-gray-200 hover:ring-2 hover:ring-gray-200 hover:bg-gray-200 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white'
                 >
                   Get Raffle Leader
                 </a>
