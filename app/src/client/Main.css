@@ -5,8 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+html, body {
+  overscroll-behavior-x: none;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* for iOS */
 }
 
 .terms-content h1 {
