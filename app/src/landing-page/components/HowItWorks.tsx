@@ -8,8 +8,31 @@ const HowItWorksComponent: React.FC<HowItWorksProps> = ({ onCompletion }) => {
   const componentRef = useRef<HTMLDivElement>(null);
   const boxRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [fillProgress, setFillProgress] = useState([0, 0, 0]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust this breakpoint as needed
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      setFillProgress([100, 100, 100]);
+      setTimeout(() => {
+        onCompletion();
+      }, 500);
+    }
+  }, [isMobile, onCompletion]);
+
+  useEffect(() => {
+    if (isMobile) return; // Skip desktop-specific logic on mobile
+
     const handleScroll = (event: WheelEvent) => {
       if (event.deltaY > 0 && fillProgress.some(progress => progress < 100)) {
         event.preventDefault();
@@ -40,7 +63,7 @@ const HowItWorksComponent: React.FC<HowItWorksProps> = ({ onCompletion }) => {
       observer.disconnect();
       window.removeEventListener('wheel', handleScroll);
     };
-  }, [fillProgress, onCompletion]);
+  }, [fillProgress, onCompletion, isMobile]);
 
   useEffect(() => {
     boxRefs.current.forEach((box, index) => {
