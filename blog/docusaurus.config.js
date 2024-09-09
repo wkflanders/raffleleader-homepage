@@ -63,15 +63,15 @@ const config = {
   
   plugins: [
     [
-      '@docusaurus/plugin-client-redirects',
-      {
-        redirects: [
-          {
-            to: '/blog', // Redirect from root to /blog
-            from: '/',
-          },
-        ],
-      },
+      // '@docusaurus/plugin-client-redirects',
+      // {
+      //   redirects: [
+      //     {
+      //       to: '/blog', // Redirect from root to /blog
+      //       from: '/',
+      //     },
+      //   ],
+      // },
     ],
     [
       '@docusaurus/plugin-google-gtag',
