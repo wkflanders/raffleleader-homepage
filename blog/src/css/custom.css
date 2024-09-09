@@ -5,6 +5,13 @@
  */
 
 /* You can override the default Infima variables here. */
+
+html, body {
+  overscroll-behavior-x: none;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* for iOS */
+}
+
 :root {
   --ifm-color-primary: #1501FE;
   --ifm-color-primary-dark: #1300df;
