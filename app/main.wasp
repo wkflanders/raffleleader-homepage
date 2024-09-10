@@ -115,7 +115,7 @@ page LoginPage {
 
 route PasswordResetRoute { path: "/password-reset", to: PasswordResetPage }
 page PasswordResetPage {
-    authRequired: true,
+  authRequired: true,
   component: import { PasswordResetPage } from "@src/auth/email-and-pass/PasswordResetPage",
 }
 

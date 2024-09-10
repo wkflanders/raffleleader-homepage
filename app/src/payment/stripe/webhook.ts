@@ -255,6 +255,9 @@ export async function handleGuessStripeSignup({
       });
     });
 
+    //                 <p>To change your password after logging in for the first time, <a href="https://raffleleader.com/reset-password/">go here</a>.</p>
+
+
     try {
       await emailSender.send({
         from: {
@@ -288,13 +291,13 @@ export async function handleGuessStripeSignup({
                 <p>Email: <strong>${email}</strong></p>
                 <p>Password: <strong>${password}</strong></p>
                 <br></br>
-                <p>To change your password after logging in for the first time, <a href="https://raffleleader.com/reset-password/">go here</a>.</p>
-                <p>For additional information on how to install and use the plugin, <a href="https://raffleleader.com/documentation/">visit our docuemntation page</a>.
+                <p>For additional information on how to install and use the plugin, <a href="https://raffleleader.com/blog/docs/intro/">visit our docuemntation page</a>.
                 <p>If you have any questions or concerns, please contact us at stephen@raffleleader.com</p>.
                 <div class="footer">
                     <p>Thank you for joining Raffle Leader!</p>
                     <p>Follow us on <a href="https://x.com/RaffleLeader">Twitter</a> | <a href="https://www.instagram.com/raffleleader/">Instagram</a></p>
-                    <p>&copy; 2024 Raffle Leader. All rights reserved.</p>
+                    <p>&copy; 2024, Capella Software Company LLC. Raffle Leader is a
+                      registered trademark of Capella Software Company LLC..</p>
                 </div>
             </div>
             </body>
