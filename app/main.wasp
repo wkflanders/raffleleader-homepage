@@ -177,6 +177,11 @@ api checkLicense {
   middlewareConfigFn: import { checkLicenseMiddleware } from "@src/apis/checkLicenseMiddleware",
 }
 
+query getCouponData {
+  fn: import { getCouponData } from "@src/payment/stripe/couponData",
+  entities:[],
+}
+
 //#endregion
 //#endregion
 
