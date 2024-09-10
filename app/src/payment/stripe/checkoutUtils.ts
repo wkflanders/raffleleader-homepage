@@ -3,7 +3,7 @@ import { stripe } from './stripeClient';
 import { HttpError } from 'wasp/server'
 
 // WASP_WEB_CLIENT_URL will be set up by Wasp when deploying to production: https://wasp-lang.dev/docs/deploying
-const DOMAIN = process.env.WASP_WEB_CLIENT_URL;
+const DOMAIN = process.env.WASP_WEB_CLIENT_URL || 'https://localhost:3000';
 
 export async function fetchStripeCustomer(customerEmail: string | undefined | null) {
   if(!customerEmail){
@@ -37,10 +37,12 @@ export async function createStripeCheckoutSession({
   priceId,
   mode,
   customerId,
+  couponId,
 }: {
   priceId: string;
   mode: StripeMode;
   customerId?: string;
+  couponId?: string;
 }) {
   try {
     // Setup options for the checkout session
@@ -54,6 +56,10 @@ export async function createStripeCheckoutSession({
       cancel_url: `${DOMAIN}/checkout?canceled=true`,
       automatic_tax: { enabled: true },
     };
+
+    if (couponId){
+      sessionOptions.discounts = [{ promotion_code: couponId }]
+    }
 
     // If customerId is not provided, set customer_creation to 'always' to ensure a customer is created
     if (!customerId && mode === 'payment') {
