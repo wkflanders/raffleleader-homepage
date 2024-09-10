@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
       
       <div className="mt-16 flex justify-between items-end">
         <p className="text-xs md:text-base" style={{ lineHeight: 1.5 }}>
-          2024, Capella Software Company LLC. Raffle Leader is a<br />
+          &copy; 2024, Capella Software Company LLC. Raffle Leader is a<br />
           registered trademark of Capella Software Company LLC.
         </p>
         <button onClick={openModal} className="text-xs md:text-md underline cursor-pointer">TERMS & PRIVACY</button>
