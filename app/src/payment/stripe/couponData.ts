@@ -2,11 +2,15 @@ import { stripe } from './stripeClient';
 import { HttpError } from 'wasp/server';
 import { requireNodeEnvVar } from '../../server/utils';
 
-const PLAN_TO_COUPON_MAP = {
+const PLAN_TO_COUPON_MAP: Record<string, () => string> = {
     'yearly': () => requireNodeEnvVar('STRIPE_FIRST_100_COUPON_CODE_ID')
+};
+
+interface GetCouponDataArgs {
+    planId: string; 
 }
 
-export const getCouponData = async ({ planId }) => {
+export const getCouponData = async ({ planId }: GetCouponDataArgs) => {
     try {
         const couponId = PLAN_TO_COUPON_MAP[planId]?.();
         if (!couponId) {
