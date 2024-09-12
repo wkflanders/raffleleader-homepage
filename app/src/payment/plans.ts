@@ -26,7 +26,7 @@ export interface CouponCode {
 const FIRST100: CouponCode = {
   code: 'FIRST100',
   stripePromotionCodeId: () => requireNodeEnvVar('STRIPE_FIRST_100_PROMO_CODE_ID'),
-  discountAmount: 89,
+  discountAmount: 100,
   currency: 'usd',
   maxRedemptions: 100,
 }
