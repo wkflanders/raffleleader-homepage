@@ -1,5 +1,5 @@
 ---
-title: "Step By Step Guide to Running A Successful Instagram Giveaway"
+title: "How To Run A Instagram Giveaway"
 date: 2024-02-21
 image: step-by-step-insta.png
 authors: stephen
