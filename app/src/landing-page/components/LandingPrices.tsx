@@ -19,14 +19,14 @@ interface PaymentPlanCard {
 export const paymentPlanCards: Record<PaymentPlanId, PaymentPlanCard> = {
     [PaymentPlanId.Yearly]: {
         name: prettyPaymentPlanName(PaymentPlanId.Yearly),
-        price: '$147',
-        description: '$247',
+        price: '$157',
+        description: '$257',
         features: ['3 Sites', 'Pre-Built Templates', 'Customizeable Giveaways', 'Email and Social Media Integrations'],
     },
     [PaymentPlanId.Lifetime]: {
         name: prettyPaymentPlanName(PaymentPlanId.Lifetime),
-        price: '$447',
-        description: '$547',
+        price: '$457',
+        description: '$557',
         features: ['Unlimited Sites', 'Pre-Built Templates', 'Customizeable Giveaways', 'Email and Social Media Integrations', 'Lifetime Updates', 'Lifetime Support', 'One-Time Payment'],
     },
 };
