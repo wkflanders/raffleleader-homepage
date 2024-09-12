@@ -28,6 +28,7 @@ module.exports = {
         transparent: 'transparent',
         raffleleader: '#1501FE',
         rldark: '#1000CE',
+        rlpurple: '#968dff',
         // white: '#FFFFFF',
         // black: '#1C2434',
         'black-2': '#010101',
