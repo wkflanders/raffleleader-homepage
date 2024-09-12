@@ -11,6 +11,7 @@ const Footer: React.FC = () => {
     <footer className="bg-rldark font-overpass tracking-wide font-light text-white px-4 md:px-25 py-15">
       <div className="flex justify-between items-start">
         <div className="flex flex-col">
+          <a href="/about" className="hover:underline">About</a>
           <a href="mailto:stephen@raffleleader.com" className="hover:underline">Contact</a>
           <a href="/blog" className="hover:underline">Blog</a>
           <a href="/blog/docs/intro" className="hover:underline">Documentation</a>
@@ -43,7 +44,7 @@ const Footer: React.FC = () => {
       
       <div className="mt-16 flex justify-between items-end">
         <p className="text-xs md:text-base" style={{ lineHeight: 1.5 }}>
-          2024, Capella Software Company LLC. Raffle Leader is a<br />
+          &copy; 2024, Capella Software Company LLC. Raffle Leader is a<br />
           registered trademark of Capella Software Company LLC.
         </p>
         <button onClick={openModal} className="text-xs md:text-md underline cursor-pointer">TERMS & PRIVACY</button>

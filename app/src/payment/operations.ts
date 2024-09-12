@@ -1,6 +1,6 @@
 import { type GenerateStripeCheckoutSession } from 'wasp/server/operations';
 import { HttpError } from 'wasp/server';
-import { PaymentPlanId, paymentPlans, type PaymentPlanEffect } from '../payment/plans';
+import { getCouponForPlan, PaymentPlanId, paymentPlans, type PaymentPlanEffect } from '../payment/plans';
 import { fetchStripeCustomer, createStripeCheckoutSession, type StripeMode } from './stripe/checkoutUtils';
 import Stripe from 'stripe';
 
@@ -12,8 +12,10 @@ export type StripeCheckoutSession = {
 export const generateStripeCheckoutSession: GenerateStripeCheckoutSession<
   PaymentPlanId,
   StripeCheckoutSession
-> = async (paymentPlanId, context) => {
+> = async (paymentPlanId , context) => {
   const paymentPlan = paymentPlans[paymentPlanId];
+  const couponObject = getCouponForPlan(paymentPlanId);
+  const couponCodeId = couponObject?.stripePromotionCodeId();
 
   let stripeCustomerId: string | undefined;
   if(context.user) {
@@ -37,19 +39,21 @@ export const generateStripeCheckoutSession: GenerateStripeCheckoutSession<
             stripeId: stripeCustomerId,
           }
         });
-        }
-      } else {
-        throw new HttpError(500, 'User not found');
       }
+    } else {
+      throw new HttpError(500, 'User not found');
     }
+  }
+  
   let session: Stripe.Checkout.Session;
-  try{
+  try {
     session = await createStripeCheckoutSession({
       priceId: paymentPlan.getStripePriceId(),
       mode: paymentPlanEffectToStripeMode(paymentPlan.effect),
-      customerId: stripeCustomerId || undefined,
+      customerId: stripeCustomerId,
+      couponId: couponCodeId
     });
-  } catch (error: any){
+  } catch (error: any) {
     const statusCode = error.statusCode || 500;
     const errorMessage = error.message || 'Internal server error';
     console.log(errorMessage);

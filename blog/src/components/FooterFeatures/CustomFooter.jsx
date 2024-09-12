@@ -53,6 +53,7 @@ const CustomFooter = () => {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <div className={styles.footerLinks}>
+            <a href="/about" className={styles.footerLink}>About</a>
             <a href="mailto:stephen@raffleleader.com" className={styles.footerLink}>Contact</a>
             <Link to={useBaseUrl('/blog')} className={styles.footerLink}>
               Blog
@@ -88,7 +89,7 @@ const CustomFooter = () => {
         
         <div className={styles.footerBottom}>
           <p className={styles.copyrightText}>
-            2024, Capella Software Company LLC. Raffle Leader is a<br />
+            &copy; 2024, Capella Software Company LLC. Raffle Leader is a<br />
             registered trademark of Capella Software Company LLC.
           </p>
           <button onClick={openModal} className={styles.termsLink}>TERMS & PRIVACY</button>

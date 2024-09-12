@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   features,
   navigation,
@@ -15,6 +15,19 @@ import Footer from './components/Footer';
 
 export default function LandingPage() {
   const [howItWorksCompleted, setHowItWorksCompleted] = useState(false);
+  const pricingSectionRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#pricing') {
+      setHowItWorksCompleted(true);
+      setTimeout(() => {
+        if (pricingSectionRef.current) {
+          pricingSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []);
 
   const handlePricingClick = () => {
     setHowItWorksCompleted(true);

@@ -115,7 +115,7 @@ page LoginPage {
 
 route PasswordResetRoute { path: "/password-reset", to: PasswordResetPage }
 page PasswordResetPage {
-    authRequired: true,
+  authRequired: true,
   component: import { PasswordResetPage } from "@src/auth/email-and-pass/PasswordResetPage",
 }
 
@@ -174,7 +174,14 @@ api stripeWebhook {
 api checkLicense {
   fn: import { checkLicense } from "@src/apis/checkLicense",
   httpRoute: (GET, "/api/check-license/:licenseKey"),
+  middlewareConfigFn: import { checkLicenseMiddleware } from "@src/apis/checkLicenseMiddleware",
 }
+
+query getCouponData {
+  fn: import { getCouponData } from "@src/payment/stripe/couponData",
+  entities:[],
+}
+
 //#endregion
 //#endregion
 

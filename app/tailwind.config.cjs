@@ -7,6 +7,12 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      dropShadow: {
+        glow: [
+          "0 0px 20px rgba(255,255, 255, 0.35)",
+          "0 0px 65px rgba(255, 255,255, 0.2)"
+        ]
+      },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif'],
         overpass: ['Overpass', 'ui-sans-serif'],
@@ -22,6 +28,7 @@ module.exports = {
         transparent: 'transparent',
         raffleleader: '#1501FE',
         rldark: '#1000CE',
+        rlpurple: '#968dff',
         // white: '#FFFFFF',
         // black: '#1C2434',
         'black-2': '#010101',

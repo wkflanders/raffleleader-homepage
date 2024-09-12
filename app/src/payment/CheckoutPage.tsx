@@ -44,7 +44,7 @@ export default function CheckoutPage() {
           </h1>
           {paymentStatus !== 'loading' && (
             <span className='text-center'>
-              You are being redirected to the login page... <br />
+              You are being redirected to the home page <br />
             </span>
           )}
         </div>

@@ -50,7 +50,7 @@ const config = {
         blog: {
           showReadingTime: true,
           postsPerPage: 'ALL',
-          routeBasePath: '',
+          routeBasePath: '/',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
@@ -107,7 +107,7 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/', label: 'Blog', position: 'left'},
           // {
           //   href: 'https://github.com/facebook/docusaurus',
           //   label: 'GitHub',
