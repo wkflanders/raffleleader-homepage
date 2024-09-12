@@ -13,7 +13,7 @@ const navigation = [
   { name: 'Pricing', href: '#pricing' },
   { name: 'Blog', href: '/blog' },
   { name: 'Documentation', href: '/docs/intro' },
-  // { name: 'About', href: routes.AboutPageRoute.build() },
+  { name: 'About', href: routes.AboutPageRoute.build() },
 ];
 
 const NavLogo = () => <img className='h-15 w-30' src={logo} alt='Raffle Leader' />;
@@ -27,6 +27,9 @@ export default function AppNavBar() {
       const pricingSection = document.getElementById('pricing-section');
       if (pricingSection) {
         pricingSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // If pricing section is not found, navigate to home page with pricing hash
+        window.location.href = '/#pricing';
       }
     } else {
       window.location.href = href;
@@ -45,6 +48,7 @@ export default function AppNavBar() {
     };
 
     window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Check hash on initial load
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
