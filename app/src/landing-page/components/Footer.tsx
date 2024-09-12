@@ -11,6 +11,7 @@ const Footer: React.FC = () => {
     <footer className="bg-rldark font-overpass tracking-wide font-light text-white px-4 md:px-25 py-15">
       <div className="flex justify-between items-start">
         <div className="flex flex-col">
+          <a href="/about" className="hover:underline">About</a>
           <a href="mailto:stephen@raffleleader.com" className="hover:underline">Contact</a>
           <a href="/blog" className="hover:underline">Blog</a>
           <a href="/blog/docs/intro" className="hover:underline">Documentation</a>
