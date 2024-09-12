@@ -50,7 +50,8 @@ export default function AboutPage() {
             <div className="relative text-center pt-28 mb-48 z-10 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1)]">
                 <h1 className="text-6xl font-bold text-raffleleader leading-loose">CONTACT US</h1>
                 <p className="mt-8 font-bold text-2xl text-slate-900 px-48 text-center">
-                    Email us at stephen@raffleleader.com
+                    Email us at <a href="mailto:stephen@raffleleader.com" className="text-raffleleader underline">stephen@raffleleader.com</a>
+
                 </p>
             </div>        
             {/* Closing */}
