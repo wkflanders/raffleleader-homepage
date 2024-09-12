@@ -14,7 +14,7 @@ export const getCouponData = async ({ planId }) => {
         }
 
         const coupon = await stripe.coupons.retrieve(couponId);
-        console.log(coupon);
+
         return {
             max_redemptions: coupon.max_redemptions,
             times_redeemed: coupon.times_redeemed
