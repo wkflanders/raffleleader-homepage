@@ -7,17 +7,17 @@ export default function AboutPage() {
         <div className='font-overpass bg-white dark:bg-boxdark-2 no-scrollbar mt-28'>
             <div className="relative text-center pb-28 shadow-xl shadow-bottom z-10">
                 <h1 className="text-6xl font-bold text-raffleleader">Hey!</h1>
-                <p className="mt-8 text-lg text-black px-48 text-left">
+                <p className="mt-8 text-lg text-black px-12 md:px-48 text-left">
                     We're Stephen and William Flanders, two brothers from the Jersey Shore and the sons of small business owners who swear by WordPress.
                     </p>
-                    <p className="mt-8 text-lg text-black px-48 text-left">
+                    <p className="mt-8 text-lg text-black px-12 md:px-48 text-left">
                     We've seen first hand the positive impact that WordPress can have. But, we've also seen how much WordPress has decayed.
                     Instead of being on the cutting edge, WordPress is now suffering from a lack of innovation, complacent developers, and plugins that look like they belong in 2012. 
                 </p>
-                <p className="mt-8 text-lg text-black px-48 text-left">
+                <p className="mt-8 text-lg text-black px-12 md:px-48 text-left">
                 Our mission is to once again make WordPress the ideal destination to grow your business. That's why we've built Raffle Leader, a giveaway plugin that is easy to use, enjoyable to look at, and, most importantly, proven to make you money.  
                 </p>
-                <p className="mt-8 text-lg text-black px-48 text-left">
+                <p className="mt-8 text-lg text-black px-12 md:px-48 text-left">
                     Thank you for taking the time to consider Raffle Leader, and if there is anything else we can do to improve your experience, please feel free to contact Stephen directly on <a target="_blank" href="https://x.com/SteveFlanders22" className="text-raffleleader underline">Twitter</a>, <a target="_blank" href="https://www.linkedin.com/in/stephen-flanders-64a510212/" className="text-raffleleader underline">LinkedIn</a>, or by email at <a href="mailto:stephen@raffleleader.com" className="text-raffleleader underline">stephen@raffleleader.com</a>.
                 </p>
             </div>
@@ -61,8 +61,8 @@ export default function AboutPage() {
                 </div>
             </div>
             <div className="relative text-center pt-28 mb-48 z-10 shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1)]">
-                <h1 className="text-6xl font-bold text-raffleleader leading-loose">CONTACT US</h1>
-                <p className="mt-8 font-bold text-2xl text-slate-900 px-48 text-center">
+                <h1 className="text-5xl md:text-6xl font-bold text-raffleleader leading-loose">CONTACT US</h1>
+                <p className="mt-8 font-bold text-xl md:text-2xl text-slate-900 px-12 md:px-48 text-center">
                     Email us at <a href="mailto:stephen@raffleleader.com" className="text-raffleleader underline">stephen@raffleleader.com</a>
                 </p>
             </div>   
