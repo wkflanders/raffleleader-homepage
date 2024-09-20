@@ -47,8 +47,8 @@ const Hero: React.FC<HeroProps> = ({ onPricingClick }) => {
         <div className='mx-auto max-w-8xl px-6 lg:px-8'>
           <div className='lg:mb-18 mx-auto max-w-3xl text-center'>
             <h1 className='font-overpass text-4xl md:text-6xl font-medium text-gray-900 dark:text-white'>
-              Get leads at <br>
-              </br>light speed
+              Grow faster with viral<br></br>
+              WordPress giveaways
             </h1>
             <p className='mt-4 md:mt-6 mx-auto max-w-2xl text-base md:text-lg leading-8 text-gray-600 dark:text-white leading-normal'>
               Put your <span className='text-raffleleader'>growth on autopilot</span> with customizable<br>
