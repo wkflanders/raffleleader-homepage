@@ -51,8 +51,8 @@ const Hero: React.FC<HeroProps> = ({ onPricingClick }) => {
               WordPress giveaways
             </h1>
             <p className='mt-4 md:mt-6 mx-auto max-w-2xl text-base md:text-lg leading-8 text-gray-600 dark:text-white leading-normal'>
-              Put your <span className='text-raffleleader'>growth on autopilot</span> with customizable<br>
-              </br> viral giveaways and contests in WordPress
+              Land <span className='text-raffleleader'>double the leads</span> in half the time with<br>
+              </br> customizable giveaways and contests in WordPress
             </p>
             <div className='mt-10 flex items-center justify-center gap-x-6'>
               <a
