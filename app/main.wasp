@@ -3,24 +3,32 @@ app RaffleLeader {
     version: "^0.14.0"
   },
 
-  title: "Raffle Leader",
+  title: "Raffle Leader - The Best WordPress Giveaway Marketing Plugin",
 
   head: [
         "<meta property='og:type' content='website' />",
+        "<meta name='author' content='Raffle Leader'>",
+        "<link rel='canonical' href='https://raffleleader.com' />",
+        "<meta name='description' content='Easily create beautiful giveaways exactly to your liking with Raffle Leader, the best WordPress giveaway marketing plugin.'>",
+        "<meta name='viewport' content='width=device-width, initial-scale=1'>",
+        "<meta charset='UTF-8'>",
+        "<meta name='keywords' content='raffle, giveaway, contest, WordPress plugin, marketing'>",
         "<meta property='og:title' content='Raffle Leader - The Best WordPress Giveaway Marketing Plugin' />",
         "<meta property='og:url' content='https://raffleleader.com' />",
-        "<meta property='og:description' content='Easily create beautiful giveaways, contests, and sweepstakes, and customize them exactly to your liking..' />",
+        "<meta property='og:description' content='Easily create beautiful giveaways exactly to your liking with Raffle Leader, the best WordPress giveaway marketing plugin.' />",
         "<meta property='og:image' content='https://raffleleader.s3.us-east-2.amazonaws.com/raffleleader-social-card-alt.png' />",
         "<meta name='twitter:image' content='https://raffleleader.s3.us-east-2.amazonaws.com/raffleleader-social-card-alt.png' />",
         "<meta name='twitter:image:width' content='1200' />",
         "<meta name='twitter:image:height' content='675' />",
         "<meta name='twitter:card' content='raffleleader_social_card' />",
+        "<meta name='twitter:title' content='Raffle Leader - The Best WordPress Giveaway Marketing Plugin'>",
+        "<meta name='twitter:description' content='Easily create beautiful giveaways, contests, and sweepstakes, and customize them exactly to your liking.'>",
         // TODO: You can put your Plausible analytics scripts below (https://docs.opensaas.sh/guides/analytics/):
         // NOTE: Plausible does not use Cookies, so you can simply add the scripts here.
         // Google, on the other hand, does, so you must instead add the script dynamically
         // via the Cookie Consent component after the user clicks the "Accept" cookies button.
-        "<script defer data-domain='<your-site-id>' src='https://plausible.io/js/script.js'></script>",  // for production
-        "<script defer data-domain='<your-site-id>' src='https://plausible.io/js/script.local.js'></script>",  // for development
+        // "<script defer data-domain='<your-site-id>' src='https://plausible.io/js/script.js'></script>",  // for production
+        // "<script defer data-domain='<your-site-id>' src='https://plausible.io/js/script.local.js'></script>",  // for development
   ],
 
   // 🔐 Auth out of the box! https://wasp-lang.dev/docs/auth/overview
@@ -283,3 +291,7 @@ job sendNewsletter {
   entities: [User]
 }
 //#endregion
+route CatchAllRoute { path: "/*", to: NotFoundPage }
+page NotFoundPage {
+  component: import { NotFoundPage } from "@src/landing-page/NotFoundPage"
+}
