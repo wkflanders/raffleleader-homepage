@@ -42,22 +42,20 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           routeBasePath: 'docs'
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           postsPerPage: 'ALL',
           routeBasePath: '/',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          // editUrl:
-          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: './src/css/custom.css',
+        },
+        sitemap: {  // Add sitemap configuration here
+          changefreq: 'weekly',
+          priority: 0.7,
+          ignorePatterns: ['/tags/**', '/categories/**'],
+          filename: 'blog-sitemap.xml',
         },
       }),
     ],
