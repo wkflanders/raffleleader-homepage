@@ -1,5 +1,7 @@
 import raffleLeaderBanner from '../../client/static/hero-image.png';
 
+import { ArcadeEmbed } from './ArcadeEmbed';
+
 // className="absolute -right-3 -bottom-3"
 
 const CursorIcon = () => (
@@ -65,13 +67,14 @@ const Hero: React.FC<HeroProps> = ({ onPricingClick }) => {
           </div>
           <div className='mt-14 flow-root sm:mt-14 '>
             <div className='rounded-xl mt-4 mb-20 md:mt-0 md:mb-0 -m-4 lg:rounded-2xl lg:p-4'>
-              <img
+              {/* <img
                 src={raffleLeaderBanner}
                 alt='App screenshot'
                 width={2432}
                 height={1442}
                 className='w-full h-auto rounded-lg shadow-xl ring-1 ring-gray-900/10 border border-slate-300'
-              />
+              /> */}
+              <ArcadeEmbed />
             </div>
           </div>
         </div>
