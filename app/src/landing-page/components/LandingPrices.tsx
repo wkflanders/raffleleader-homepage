@@ -201,7 +201,7 @@ export default function LandingPrices() {
                                         className={cn(
                                             'mt-8 block rounded-lg py-3 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-raffleleader transition-colors duration-200',
                                             planId === bestDealPaymentPlanId
-                                                ? 'bg-raffleleader text-white hover:bg-white/90 hover:text-raffleleader hover:border-2 hover:border-raffleleader'
+                                                ? 'bg-raffleleader border border-raffleleader text-white hover:bg-white/90 hover:text-raffleleader hover:border-raffleleader'
                                                 : 'bg-white text-raffleleader hover:bg-gray-200 border border-raffleleader',
                                             {
                                                 'opacity-50 cursor-wait cursor-not-allowed': isStripePaymentLoading === planId,
