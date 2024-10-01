@@ -190,6 +190,11 @@ query getCouponData {
   entities:[],
 }
 
+route AffiliatePage { path: "/affiliates", to: AffiliatePage }
+page AffiliatePage {
+  component: import AffiliatePage from "@src/landing-page/components/AffiliatePage"
+}
+
 //#endregion
 //#endregion
 
@@ -198,6 +203,10 @@ query getDailyStats {
   fn: import { getDailyStats } from "@src/analytics/operations",
   entities: [User, DailyStats]
 }
+
+// query fileDownload {
+//   fn: import { fileDownloader } from "@src/server/fileDownloader",
+// }
 
 job dailyStatsJob {
   executor: PgBoss,
@@ -290,6 +299,7 @@ job sendNewsletter {
   },
   entities: [User]
 }
+
 //#endregion
 route CatchAllRoute { path: "/*", to: NotFoundPage }
 page NotFoundPage {
