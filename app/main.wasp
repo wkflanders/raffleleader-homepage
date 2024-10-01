@@ -185,6 +185,16 @@ api checkLicense {
   middlewareConfigFn: import { checkLicenseMiddleware } from "@src/apis/checkLicenseMiddleware",
 }
 
+api getFileDownload {
+  fn: import { getFileDownload } from "@src/apis/getFileDownload",
+  httpRoute: (GET, "/api/file/:key"),
+}
+
+apiNamespace file {
+  middlewareConfigFn: import { apiFileMiddleware } from "@src/apis/apiFileMiddleware",
+  path: "/api/file"
+}
+
 query getCouponData {
   fn: import { getCouponData } from "@src/payment/stripe/couponData",
   entities:[],
@@ -203,10 +213,6 @@ query getDailyStats {
   fn: import { getDailyStats } from "@src/analytics/operations",
   entities: [User, DailyStats]
 }
-
-// query fileDownload {
-//   fn: import { fileDownloader } from "@src/server/fileDownloader",
-// }
 
 job dailyStatsJob {
   executor: PgBoss,
