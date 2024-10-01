@@ -43,7 +43,7 @@ function FileDownload({ fileKey }: { fileKey: string }) {
       <button
         onClick={handleDownload}
         disabled={isLoading}
-        className={`text-raffleleader hover:text-rldark ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+        className={`text-raffleleader underline hover:text-rldark ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
         {isLoading ? 'Initiating Download...' : `Download ${fileKey}`}
       </button>
