@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { api } from 'wasp/client/api'
 import type { User } from 'wasp/entities';
 import {
   type SubscriptionStatus,
@@ -7,6 +9,47 @@ import {
 import { Link } from 'wasp/client/router';
 import { logout } from 'wasp/client/auth';
 import { z } from 'zod';
+
+type ApiResponse = {
+  url?: string;
+  error?: string;
+}
+
+function FileDownload({ fileKey }: { fileKey: string }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleDownload = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await api.get<ApiResponse>(`/api/file/${fileKey}`);
+      if (response.data.url) {
+        window.location.href = response.data.url;
+      } else if (response.data.error) {
+        setError(response.data.error);
+      }
+    } catch (err) {
+      setError('Failed to initiate download');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (error) return <div className="text-red-500 text-sm">{error}</div>;
+
+  return (
+    <div>
+      <button
+        onClick={handleDownload}
+        disabled={isLoading}
+        className={`text-raffleleader underline hover:text-rldark ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+      >
+        {isLoading ? 'Initiating Download...' : `Download ${fileKey}`}
+      </button>
+    </div>
+  );
+}
 
 export default function AccountPage({ user }: { user: User }) {
   return (
@@ -31,11 +74,11 @@ export default function AccountPage({ user }: { user: User }) {
             )}
             <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6'>
               <dt className='text-sm font-medium text-gray-500 dark:text-white'>Your Plan</dt>
-              <UserCurrentPaymentPlan  
-                subscriptionStatus={ user.subscriptionStatus as SubscriptionStatus} 
-                subscriptionPlan={ user.subscriptionPlan } 
-                datePaid={ user.datePaid }
-                 />
+              <UserCurrentPaymentPlan
+                subscriptionStatus={user.subscriptionStatus as SubscriptionStatus}
+                subscriptionPlan={user.subscriptionPlan}
+                datePaid={user.datePaid}
+              />
             </div>
             {!!user.licenseKey && (
               <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6'>
@@ -43,6 +86,16 @@ export default function AccountPage({ user }: { user: User }) {
                 <dd className='mt-1 text-sm text-gray-900 dark:text-gray-400 sm:col-span-2 sm:mt-0'>{user.licenseKey}</dd>
               </div>
             )}
+            <div className='py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6'>
+              <dt className='text-sm font-medium text-gray-500 dark:text-white'>Plugin Zip File</dt>
+              <dd className='mt-1 text-sm text-gray-900 dark:text-gray-400 sm:col-span-2 sm:mt-0'>
+                <div className='space-y-2'>
+                  {user.subscriptionStatus === 'active' && (
+                    <FileDownload fileKey="raffle-leader-v1.0.0.zip" />
+                  )}
+                </div>
+              </dd>
+            </div>
           </dl>
         </div>
       </div>
@@ -64,7 +117,7 @@ type UserCurrentPaymentPlanProps = {
   datePaid: Date | null
 }
 
-function UserCurrentPaymentPlan({ subscriptionPlan, subscriptionStatus, datePaid }: UserCurrentPaymentPlanProps) { 
+function UserCurrentPaymentPlan({ subscriptionPlan, subscriptionStatus, datePaid }: UserCurrentPaymentPlanProps) {
   if (subscriptionStatus && subscriptionPlan && datePaid) {
     return (
       <>
