@@ -15,9 +15,9 @@ function CustomNavbar() {
     <div className={`navbar ${styles.navbar}`}>
       <nav className={styles.customNavbar} aria-label="Global">
         <div className={styles.navbarLeft}>
-            <Link to="https://raffleleader.com" className={styles.navbarBrand}>
+            <a href="https://raffleleader.com" className={styles.navbarBrand}>
                 <img src={useBaseUrl('img/TEXT-LOGO.svg')} alt="Logo" className={styles.navbarLogo} />
-            </Link>
+            </a>
         </div>
         <div className={styles.navbarCenter}>
             <a href="https://raffleleader.com/#pricing" className={styles.navbarLink} onClick={handlePricingClick}>
@@ -29,9 +29,9 @@ function CustomNavbar() {
             <Link to={useBaseUrl('docs/intro')} className={styles.navbarLink}>
                 Documentation
             </Link>
-            <Link to="https://raffleleader.com/about" className={styles.navbarLink}>
+            <a href="https://raffleleader.com/about" className={styles.navbarLink}>
                 About
-            </Link>
+            </a>
         </div>
         <div className={styles.navbarRight}>
           <div style={{ visibility: 'hidden' }}>Placeholder</div>
