@@ -18,6 +18,12 @@ const BlogListPage = ({ metadata, items }) => {
     }
   };
 
+  const truncateToWords = (text, maxWords = 30) => {
+    const words = text.split(/\s+/);
+    if (words.length <= maxWords) return text;
+    return words.slice(0, maxWords).join(' ') + '...';
+  };
+
   const blogPosts = items.map(({ content }) => {
     const { frontMatter, metadata } = content;
     const { permalink, title, description, date } = metadata;
@@ -30,7 +36,7 @@ const BlogListPage = ({ metadata, items }) => {
     return {
       permalink,
       title,
-      description,
+      description: truncateToWords(description),
       imageUrl,
       date: new Date(date),
     };
@@ -59,9 +65,12 @@ const BlogListPage = ({ metadata, items }) => {
     setCurrentPage(pageNumber);
   };
 
-  // Scroll to top on page change
+  // Scroll to top on page change using window.scrollTo
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }, [currentPage]);
 
   return (
