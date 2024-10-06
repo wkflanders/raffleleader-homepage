@@ -1,48 +1,35 @@
-# Docs Coming Soon
-<!-- ---
-sidebar_position: 1
----
+# Introduction
+:::note
 
-# Tutorial Intro
+This is an overview of Raffle Leader. For setting up, check out our [installation guide](./Getting%20Started/installation.md).
 
-Let's discover **Docusaurus in less than 5 minutes**.
+:::
 
-## Getting Started
+## Raffle Leader is a WordPress plugin
 
-Get started by **creating a new site**.
+Raffle Leader is a customizable giveaway plugin that seamlessly folds into any WordPress site. At its core, Raffle Leader is comprised of three parts:
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+### 1. Raffle Overview Page
 
-### What you'll need
+This is Raffle Leader's admin panel and backend view. Here you can view all of your raffles as well as the contestants and entries for each individual raffle. Raffle Leader also provides tools for managing your raffles including contestant email export, duplicate raffle, and trash actions.
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+![](https://raffleleader-blog.s3.us-east-2.amazonaws.com/Capture1.PNG)
 
-## Generate a new site
+### 2. Raffle Builder Page
 
-Generate a new Docusaurus site using the **classic template**.
+The builder page is where you can customize, edit, set start and end dates, write rules and terms, and publish each raffle. Choose from a variety of professionally crafted templates, or build your own from a blank canvas. Raffle Leader provides a multitude of tools for you to design your raffle exactly how you dream it.
 
-The classic template will automatically be added to your project after you run the command:
+![](https://raffleleader-blog.s3.us-east-2.amazonaws.com/Capture2.PNG)
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+### 3. Publish
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+Raffle Leader utilizes WordPress' native posts and pages to easily publish your raffle to your website. You can incorporate a raffle into a post, or dedicate an entire landing page - the choice is yours! 
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+![](https://raffleleader-blog.s3.us-east-2.amazonaws.com/Capture3.PNG)
 
-## Start your site
+## Can Raffle Leader work with non-WordPress sites?
 
-Run the development server:
+At the moment, **no, Raffle Leader is strictly a WordPress plugin**. Raffle Leader relies on the WordPress environment for backend and database functions. There are plans to expand towards an independent web app that could work with any website however, so stay tuned!
 
-```bash
-cd my-website
-npm run start
-```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes. -->
