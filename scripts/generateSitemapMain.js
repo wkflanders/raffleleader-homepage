@@ -8,6 +8,8 @@ const routes = [
   { loc: 'https://raffleleader.com/', lastmod: '2024-04-27', changefreq: 'daily', priority: 1.0 },
   { loc: 'https://raffleleader.com/about', lastmod: '2024-04-27', changefreq: 'monthly', priority: 0.8 },
   { loc: 'https://raffleleader.com/blog', lastmod: '2024-04-27', changefreq: 'weekly', priority: 0.7 },
+  { loc: 'https://raffleleader/affiliates', lastmod: '2024-04-27', changefreq: 'monthly', priority: 0.5 },
+  { loc: 'https://climate.stripe.com/GwsFNq', lastmod: '2024-04-27', changefreq: 'monthly', priority: 0.5 },
   // Add additional public routes here
 ];
 
