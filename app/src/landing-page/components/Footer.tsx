@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
           </a>
         </div>
       </div>
-      <div className="ml-auto w-100 text-right">
+      <div className="ml-auto md:w-100 mt-6 text-xs md:text-base md:text-right">
         <p>
           We will <a href="https://climate.stripe.com/GwsFNq" target='_blank' className="underline hover:underline">contribute 0.5% of your purchase <br></br></a>to remove CO<sub>2</sub> from the atmosphere
         </p>
