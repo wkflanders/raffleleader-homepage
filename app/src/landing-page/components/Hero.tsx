@@ -63,6 +63,14 @@ const Hero: React.FC<HeroProps> = ({ onPricingClick }) => {
                 Get Raffle Leader
                 <CursorIcon />
               </a>
+              <a
+                href="https://calendly.com/stephen-raffleleader/30min?preview_source=et_card&month=2024-10"
+                target="_blank"
+                rel="noopener noreferrer"
+                className='rounded-lg px-6 md:px-10 py-3 text-xs md:text-sm font-semibold text-raffleleader bg-white ring-1 ring-inset ring-raffleleader hover:bg-raffleleader hover:text-white transition-colors duration-200 ease-in-out'
+              >
+                Get A Demo
+              </a>
             </div>
           </div>
           <div className='mt-14 flow-root sm:mt-14 '>
