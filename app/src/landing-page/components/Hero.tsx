@@ -6,8 +6,8 @@ import { ArcadeEmbed } from './ArcadeEmbed';
 
 const CursorIcon = () => (
   <svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="56" height="56" className="absolute -right-1 -bottom-6">
-    <path fill="#ffffff" d="M13.9,19.85c-0.05,0-0.1,0-0.2-0.05c-0.1-0.05-0.2-0.15-0.3-0.25l-1.85-4.3l-2.25,2.1c-0.05,0.05-0.15,0.1-0.3,0.1c-0.05,0-0.15,0-0.2-0.05C8.65,17.4,8.5,17.2,8.5,17l0-11c0-0.2,0.1-0.4,0.3-0.45C8.85,5.5,8.95,5.5,9,5.5c0.1,0,0.25,0.05,0.35,0.15l8,7.5c0.15,0.15,0.2,0.35,0.15,0.55c-0.05,0.2-0.25,0.3-0.45,0.35l-3.15,0.3l1.95,4.25c0.05,0.1,0.05,0.25,0,0.4c-0.05,0.1-0.15,0.25-0.25,0.3l-1.45,0.65C14.05,19.85,13.95,19.85,13.9,19.85z"/>
-    <path fill="#000000" d="M9,6l8,7.5l-3.85,0.35l2.25,4.9l-1.45,0.65l-2.15-4.95L9,17L9,6 M9,5c-0.15,0-0.25,0.05-0.4,0.1C8.15,5.25,7.9,5.6,7.9,6l0,11c0,0.4,0.25,0.75,0.6,0.9C8.75,18,8.9,18,9,18c0.25,0,0.5-0.1,0.7-0.25l1.7-1.6l1.55,3.65c0.1,0.25,0.3,0.45,0.55,0.55c0.1,0.05,0.25,0.05,0.35,0.05c0.15,0,0.25-0.05,0.4-0.1l1.45-0.65c0.25-0.1,0.45-0.3,0.55-0.55c0.1-0.25,0.1-0.55,0-0.75l-1.65-3.6l2.45-0.2c0.4-0.05,0.75-0.3,0.85-0.65c0.15-0.35,0.05-0.8-0.25-1.05l-8-7.5C9.5,5.1,9.25,5,9,5L9,5z"/>
+    <path fill="#ffffff" d="M13.9,19.85c-0.05,0-0.1,0-0.2-0.05c-0.1-0.05-0.2-0.15-0.3-0.25l-1.85-4.3l-2.25,2.1c-0.05,0.05-0.15,0.1-0.3,0.1c-0.05,0-0.15,0-0.2-0.05C8.65,17.4,8.5,17.2,8.5,17l0-11c0-0.2,0.1-0.4,0.3-0.45C8.85,5.5,8.95,5.5,9,5.5c0.1,0,0.25,0.05,0.35,0.15l8,7.5c0.15,0.15,0.2,0.35,0.15,0.55c-0.05,0.2-0.25,0.3-0.45,0.35l-3.15,0.3l1.95,4.25c0.05,0.1,0.05,0.25,0,0.4c-0.05,0.1-0.15,0.25-0.25,0.3l-1.45,0.65C14.05,19.85,13.95,19.85,13.9,19.85z" />
+    <path fill="#000000" d="M9,6l8,7.5l-3.85,0.35l2.25,4.9l-1.45,0.65l-2.15-4.95L9,17L9,6 M9,5c-0.15,0-0.25,0.05-0.4,0.1C8.15,5.25,7.9,5.6,7.9,6l0,11c0,0.4,0.25,0.75,0.6,0.9C8.75,18,8.9,18,9,18c0.25,0,0.5-0.1,0.7-0.25l1.7-1.6l1.55,3.65c0.1,0.25,0.3,0.45,0.55,0.55c0.1,0.05,0.25,0.05,0.35,0.05c0.15,0,0.25-0.05,0.4-0.1l1.45-0.65c0.25-0.1,0.45-0.3,0.55-0.55c0.1-0.25,0.1-0.55,0-0.75l-1.65-3.6l2.45-0.2c0.4-0.05,0.75-0.3,0.85-0.65c0.15-0.35,0.05-0.8-0.25-1.05l-8-7.5C9.5,5.1,9.25,5,9,5L9,5z" />
   </svg>
 );
 
@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ onPricingClick }) => {
     e.preventDefault();
     onPricingClick();
   };
-  
+
   return (
     <div className='mx-auto max-w-7xl px-8 relative pt-14 w-full'>
       <div
@@ -52,7 +52,9 @@ const Hero: React.FC<HeroProps> = ({ onPricingClick }) => {
               Get leads at <br></br> light speed
             </h1>
             <p className='mt-4 md:mt-6 mx-auto max-w-2xl text-base md:text-lg leading-8 text-gray-600 dark:text-white leading-normal'>
-              Put your <span className="text-raffleleader">growth on autopilot</span> with customizable, <br></br> viral giveaways and contests in WordPress 
+              Put your <span className="text-raffleleader">growth on autopilot</span> with customizable,{' '}
+              <span className="hidden md:inline"><br /></span>
+              viral giveaways and contests in WordPress
             </p>
             <div className='mt-10 flex items-center justify-center gap-x-6'>
               <a
